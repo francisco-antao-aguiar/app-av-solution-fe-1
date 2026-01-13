@@ -1,0 +1,38 @@
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-8">
+  <div class="max-w-2xl mx-auto">
+    <h1 class="text-4xl font-bold text-gray-900 mb-8">Hello World Endpoint Test</h1>
+
+    <div class="bg-white rounded-lg shadow-lg p-6">
+      <div class="space-y-4">
+        <!-- Loading State -->
+        <div *ngIf="isLoading()" class="flex items-center justify-center">
+          <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
+          <span class="ml-3 text-gray-700">Loading...</span>
+        </div>
+
+        <!-- Error State -->
+        <div *ngIf="error() && !isLoading()" class="bg-red-50 border border-red-200 rounded p-4">
+          <p class="text-red-800 font-semibold">Error</p>
+          <p class="text-red-700 text-sm">{{ error() }}</p>
+        </div>
+
+        <!-- Success State -->
+        <div *ngIf="response() && !isLoading() && !error()" class="bg-green-50 border border-green-200 rounded p-4">
+          <p class="text-green-800 font-semibold mb-2">Response</p>
+          <div class="bg-white border border-green-300 rounded p-4 font-mono text-sm text-gray-800 break-words">
+            {{ response() }}
+          </div>
+        </div>
+
+        <!-- Retry Button -->
+        <button
+          (click)="fetchHelloWorld()"
+          [disabled]="isLoading()"
+          class="mt-4 px-6 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+        >
+          {{ isLoading() ? 'Loading...' : 'Retry' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
