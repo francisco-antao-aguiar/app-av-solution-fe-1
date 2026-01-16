@@ -23,7 +23,7 @@ export class TestComponent implements OnInit {
     this.isLoading.set(true);
     this.error.set(null);
 
-    this.http.get('/hello-world', { responseType: 'text' }).subscribe({
+    this.http.get('/api/hello-world', { responseType: 'text' }).subscribe({
       next: (data) => {
         this.response.set(data);
         this.isLoading.set(false);
