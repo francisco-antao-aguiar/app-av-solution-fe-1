@@ -1,5 +1,4 @@
-<header *ngIf="authService.isLoggedIn()" class="absolute top-0 right-0 p-4 text-white bg-gray-800 rounded-bl-lg flex items-center gap-4">
-  Welcome, {{ authService.getUsername() }}
-  <button (click)="authService.logout()" class="px-3 py-1 bg-red-600 hover:bg-red-700 rounded text-sm">Logout</button>
-</header>
-<router-outlet />
+<app-navbar></app-navbar>
+<div>
+  <router-outlet />
+</div>
