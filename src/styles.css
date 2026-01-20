@@ -4,13 +4,14 @@
 
 
 :root {
-  --primary-color: #B7CB34; /* blue-600 */
+  --primary-color: #a4ca3a; /* blue-600 */
   --secondary-color: #64748b; /* slate-500 */
-  --accent-color: #B7CB34; /* amber-500 */
+  --accent-color: #a4ca3a; /* amber-500 */
   --background-color: #EDF4FF; /* white */
   --text-color: #1f2937; /* gray-800 */
   --navbar-bg: #ffffff; /* gray-800 */
   --navbar-text: #333030; /* black */
+  --hover-color: #546e0a;
 }
 
 /* Global background */
