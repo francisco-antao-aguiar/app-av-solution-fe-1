@@ -1,0 +1,21 @@
+
+.homebtn {
+    background-color: var(--accent-color);
+}
+
+.homebtn:hover {
+    background-color: transparent;
+    color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+}
+
+.image-background {
+  height: 100%;
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.image-gradient {
+  background: linear-gradient(160deg, rgba(171, 255, 207, 0.17) 0%, rgba(21, 209, 0, 0.54) 100%);
+}
