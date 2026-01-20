@@ -9,11 +9,11 @@
       <!-- Navigation Links -->
       <div class="hidden md:block">
         <div class="ml-10 flex items-baseline space-x-8">
-          <a routerLink="/home" routerLinkActive="active-underline" class="px-3 py-2 text-sm font-medium hover-bg transition-colors">Home</a>
-          <a routerLink="/portfolio" routerLinkActive="active-underline" class="px-3 py-2 text-sm font-medium hover-bg transition-colors">Portfolio</a>
-          <a routerLink="/about-us" routerLinkActive="active-underline" class="px-3 py-2 text-sm font-medium hover-bg transition-colors">About Us</a>
+          <a routerLink="/home" routerLinkActive="active-underline" class="px-3 py-2 text-sm  hover-bg transition-colors">Home</a>
+          <a routerLink="/portfolio" routerLinkActive="active-underline" class="px-3 py-2 text-sm  hover-bg transition-colors">Portfolio</a>
+          <a routerLink="/about-us" routerLinkActive="active-underline" class="px-3 py-2 text-sm  hover-bg transition-colors">About Us</a>
           @if (authService.isLoggedIn()) {
-            <a routerLink="/test" routerLinkActive="active-underline" class="px-3 py-2 text-sm font-medium hover-bg transition-colors">Test Admin</a>
+            <a routerLink="/test" routerLinkActive="active-underline" class="px-3 py-2 text-sm  hover-bg transition-colors">Test Admin</a>
           }
         </div>
       </div>
@@ -22,7 +22,7 @@
         @if (authService.isLoggedIn()) {
             <div class="hidden md:block flex items-center space-x-4">
                 <span class="text-sm opacity-80">Welcome, {{ authService.getUsername() }}</span>
-                <button (click)="logout()" class="logout-btn px-4 py-2 rounded-lg text-sm font-medium transition-colors shadow-sm">Logout</button>
+                <button (click)="logout()" class="logout-btn px-4 py-2 rounded-lg text-sm  transition-colors shadow-sm">Logout</button>
             </div>   
         }
 
@@ -46,16 +46,16 @@
          [class.opacity-0]="!isMobileMenuOpen()"
          [class.opacity-100]="isMobileMenuOpen()">
       <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-        <a (click)="closeMobileMenu()" routerLink="/home" routerLinkActive="active-underline" class="block px-3 py-3 text-base font-medium hover-bg rounded-md transition-all duration-200">Home</a>
-        <a (click)="closeMobileMenu()" routerLink="/portfolio" routerLinkActive="active-underline" class="block px-3 py-3 text-base font-medium hover-bg rounded-md transition-all duration-200">Portfolio</a>
-        <a (click)="closeMobileMenu()" routerLink="/about-us" routerLinkActive="active-underline" class="block px-3 py-3 text-base font-medium hover-bg rounded-md transition-all duration-200">About Us</a>
+        <a (click)="closeMobileMenu()" routerLink="/home" routerLinkActive="active-underline" class="block px-3 py-3 text-base  hover-bg rounded-md transition-all duration-200">Home</a>
+        <a (click)="closeMobileMenu()" routerLink="/portfolio" routerLinkActive="active-underline" class="block px-3 py-3 text-base  hover-bg rounded-md transition-all duration-200">Portfolio</a>
+        <a (click)="closeMobileMenu()" routerLink="/about-us" routerLinkActive="active-underline" class="block px-3 py-3 text-base hover-bg rounded-md transition-all duration-200">About Us</a>
         @if (authService.isLoggedIn()) {
-          <a (click)="closeMobileMenu()" routerLink="/test" routerLinkActive="active-underline" class="block px-3 py-3 text-base font-medium hover-bg rounded-md transition-all duration-200">Test Admin</a>
+          <a (click)="closeMobileMenu()" routerLink="/test" routerLinkActive="active-underline" class="block px-3 py-3 text-base  hover-bg rounded-md transition-all duration-200">Test Admin</a>
         }
         @if (authService.isLoggedIn()) {
           <div class="px-3 py-3 border-t border-gray-200 mt-3">
             <span class="block text-sm text-gray-600 mb-2">Welcome, {{ authService.getUsername() }}</span>
-            <button (click)="logout()" class="logout-btn w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-all duration-200">Logout</button>
+            <button (click)="logout()" class="logout-btn w-full text-left px-3 py-2 rounded-md text-sm transition-all duration-200">Logout</button>
           </div>
         }
       </div>
