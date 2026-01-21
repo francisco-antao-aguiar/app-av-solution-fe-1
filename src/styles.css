@@ -7,11 +7,16 @@
   --primary-color: #a4ca3a; /* blue-600 */
   --secondary-color: #64748b; /* slate-500 */
   --accent-color: #a4ca3a; /* amber-500 */
-  --background-color: #EDF4FF; /* white */
+  --background-color: #ed07f5; /* white */
   --text-color: #1f2937; /* gray-800 */
   --navbar-bg: #ffffff; /* gray-800 */
   --navbar-text: #333030; /* black */
   --hover-color: #546e0a;
+  --shadow: #637a2428;  
+  --shadow-hover: #a4ca3aa1;
+  --dark-shadow:#000000;
+  --bg-light: #eb0808;
+  --bg-dark: #66ff00;
 }
 
 /* Global background */
