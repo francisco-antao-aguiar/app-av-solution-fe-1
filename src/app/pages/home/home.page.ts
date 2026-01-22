@@ -2,10 +2,12 @@ import {Component} from '@angular/core';
 import {HomeBannerComponent} from "../../components/home/home-banner.component";
 import {AboutUsComponent} from '../../components/about-us/about-us.component';
 import {HomeModel} from './home.model';
+import { ProjectsComponent } from "../../components/projects/projects.component";
+import { ServicesComponent } from "../../components/services/services.component";
 
 @Component({
   selector: 'app-home',
-  imports: [HomeBannerComponent, AboutUsComponent],
+  imports: [HomeBannerComponent, AboutUsComponent, ProjectsComponent, ServicesComponent],
   templateUrl: './home.page.html',
   styleUrl: './home.page.css',
 })
