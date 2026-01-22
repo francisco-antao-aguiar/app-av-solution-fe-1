@@ -2,12 +2,12 @@ import {Component} from '@angular/core';
 import {HomeBannerComponent} from "../../components/home/home-banner.component";
 import {AboutUsComponent} from '../../components/about-us/about-us.component';
 import {HomeModel} from './home.model';
-import { ProjectsComponent } from "../../components/projects/projects.component";
-import { ServicesComponent } from "../../components/services/services.component";
-import { FadeLightToDarkComponent } from '../../components/fade-light-to-dark/fade-light-to-dark.component';
-import { FadeDarkToLightComponent } from "../../components/fade-dark-to-light/fade-dark-to-light.component";
-import { ContactUsComponent } from '../../components/contact-us/contact-us.component';
-import { FooterComponent } from "../../components/footer/footer.component";
+import {ProjectsComponent} from "../../components/projects/projects.component";
+import {ServicesComponent} from "../../components/services/services.component";
+import {FadeLightToDarkComponent} from '../../components/fade-light-to-dark/fade-light-to-dark.component';
+import {FadeDarkToLightComponent} from "../../components/fade-dark-to-light/fade-dark-to-light.component";
+import {ContactUsComponent} from '../../components/contact-us/contact-us.component';
+import {FooterComponent} from "../../components/footer/footer.component";
 
 @Component({
   selector: 'app-home',
@@ -47,28 +47,28 @@ export class HomePage {
       cards: [
         {
           id: "1",
-          icon: "building",
+          icon: "fa-building",
           title: "Construção Civil",
           description:
             "Construção de edifícios residenciais e comerciais com os mais altos padrões de qualidade e segurança.",
         },
         {
           id: "2",
-          icon: "hammer",
+          icon: "fa-hammer",
           title: "Remodelações",
           description:
             "Remodelação e renovação de espaços, adaptando-os às suas necessidades e modernizando instalações.",
         },
         {
           id: "3",
-          icon: "clipboard",
+          icon: "fa-clipboard-list",
           title: "Gestão de Projetos",
           description:
             "Gestão completa de projetos de construção, desde o planeamento até à entrega final.",
         },
         {
           id: "4",
-          icon: "settings",
+          icon: "fa-handshake",
           title: "Consultoria",
           description:
             "Consultoria especializada em engenharia e construção para otimizar soluções técnicas e financeiras.",
@@ -130,6 +130,12 @@ export class HomePage {
           year: 2024,
         },
       ],
+    },
+
+    contactUs: {
+      title: "Pronto para começar seu projeto?",
+      subtitle: "Entre em contato conosco e receba um orçamento personalizado para a sua obra.",
+      contactUsButtonText: "Entre em Contacto",
     },
 
     contacts: {

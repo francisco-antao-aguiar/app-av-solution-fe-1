@@ -3,6 +3,7 @@ export type HomeModel = {
   aboutUs: AboutUsModel,
   services: ServicesModel,
   projects: ProjectsModel,
+  contactUs: ContactUsModel,
   contacts: ContactsModel,
 }
 
@@ -54,6 +55,12 @@ export type ProjectsCardModel = {
   subtitle: string,
   location: string,
   year: number,
+}
+
+export type ContactUsModel = {
+  title: string,
+  subtitle: string,
+  contactUsButtonText: string
 }
 
 export type ContactsModel = {

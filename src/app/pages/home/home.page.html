@@ -1,11 +1,11 @@
 <home-banner-component [data]="homeData.homeBanner"></home-banner-component>
 <about-us-component [data]="homeData.aboutUs"></about-us-component>
 <fade-light-to-dark-component></fade-light-to-dark-component>
-<services-component></services-component>
+<services-component [data]="homeData.services"></services-component>
 <fade-dark-to-light-component></fade-dark-to-light-component>
 <projects-component [data]="homeData.projects"></projects-component>
 <fade-light-to-dark-component [endColor]="'var(--primary-color)'"></fade-light-to-dark-component>
-<contact-us-component></contact-us-component>
-<footer-component></footer-component>
+<contact-us-component [data]="homeData.contactUs"></contact-us-component>
+<footer-component [data]="homeData.contacts"></footer-component>
 
 

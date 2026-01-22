@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {AboutUsModel} from '../../pages/home/home.model';
+import {ContactsModel} from '../../pages/home/home.model';
 
 @Component({
   selector: 'footer-component',
@@ -9,4 +9,5 @@ import {AboutUsModel} from '../../pages/home/home.model';
   styleUrl: './footer.component.css',
 })
 export class FooterComponent {
+  @Input() data!: ContactsModel;
 }

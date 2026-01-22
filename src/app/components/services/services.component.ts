@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {ServicesModel} from '../../pages/home/home.model';
 
 @Component({
   selector: 'services-component',
@@ -8,4 +9,5 @@ import {CommonModule} from '@angular/common';
   styleUrl: './services.component.css',
 })
 export class ServicesComponent {
+  @Input() data!: ServicesModel;
 }
