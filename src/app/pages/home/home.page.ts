@@ -4,10 +4,12 @@ import {AboutUsComponent} from '../../components/about-us/about-us.component';
 import {HomeModel} from './home.model';
 import { ProjectsComponent } from "../../components/projects/projects.component";
 import { ServicesComponent } from "../../components/services/services.component";
+import { FadeLightToDarkComponent } from '../../components/fade-light-to-dark/fade-light-to-dark.component';
+import { FadeDarkToLightComponent } from "../../components/fade-dark-to-light/fade-dark-to-light.component";
 
 @Component({
   selector: 'app-home',
-  imports: [HomeBannerComponent, AboutUsComponent, ProjectsComponent, ServicesComponent],
+  imports: [HomeBannerComponent, AboutUsComponent, ProjectsComponent, ServicesComponent, FadeLightToDarkComponent, FadeDarkToLightComponent],
   templateUrl: './home.page.html',
   styleUrl: './home.page.css',
 })

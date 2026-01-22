@@ -17,7 +17,8 @@
   --dark-shadow:#000000;
   /*--bg-light: #fdfffd;*/
   --bg-light: #ffffff;
-  --bg-dark: #f2f2f2;
+  --bg-dark: #dddddd;
+  --fade-padding:30px;
 }
 
 /* Global background */
