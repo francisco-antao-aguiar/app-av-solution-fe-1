@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {AboutUsModel} from '../../pages/home/home.model';
 
 @Component({
   selector: 'about-us-component',
@@ -8,4 +9,5 @@ import {CommonModule} from '@angular/common';
   styleUrl: './about-us.component.css',
 })
 export class AboutUsComponent {
+  @Input() data!: AboutUsModel;
 }

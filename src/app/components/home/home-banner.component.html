@@ -2,8 +2,8 @@
 
   <div class="image-background absolute inset-0 -z-10">
     <img class="absolute inset-0 w-full h-full object-cover"
-         alt="Home image"
-         src="assets/default/background-image.png">
+         alt="HomePage image"
+         src="{{data.image}}">
     <!-- Overlay -->
     <div class="image-gradient absolute inset-0"></div>
   </div>
@@ -11,13 +11,12 @@
 
   <div class="hero-gradient text-white py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-4xl md:text-6xl font-bold mb-6" id="hero-title">Construindo o Futuro com Excelência</h1>
-      <p class="text-xl md:text-2xl mb-8" id="hero-subtitle">Engenharia e Construção de Qualidade</p>
-      <p class="text-lg mb-10 max-w-3xl mx-auto" id="hero-content">Grupo Mirandas é referência em projetos de engenharia
-        e construção</p>
+      <h1 class="text-4xl md:text-6xl font-bold mb-6" id="hero-title">{{ data.title }}</h1>
+      <p class="text-xl md:text-2xl mb-8" id="hero-subtitle">{{ data.subtitle }}</p>
+      <p class="text-lg mb-10 max-w-3xl mx-auto" id="hero-content">{{ data.description }}</p>
       <a [routerLink]="['/home']" class="homebtn px-8 py-4 rounded-full font-semibold inline-block"
          fragment="contact">
-        Solicite um Orçamento
+        {{ data.budgetButtonText }}
       </a>
     </div>
   </div>

@@ -1,4 +1,4 @@
-<section class="about max-w-7xl mx-auto px-4 py-16">
+<section class="about max-w-7xl mx-auto px-4 py-16" id="about-us">
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
     <!-- LEFT SIDE -->
@@ -6,7 +6,7 @@
       <img
         alt="About us"
         class="w-full h-full object-cover rounded-2xl shadow-2xl"
-        src="assets/default/about-us.jpg"
+        src="{{ data.image }}"
         style="filter: drop-shadow(0 0 1rem var(--dark-shadow))"
       />
 
@@ -17,45 +17,29 @@
          text-xl md:text-4xl"
         style="background: var(--primary-color)"
       >
-        <div class="font-bold pb-1">20 +</div>
-        <div class="font-medium text-sm md:text-base">Anos de Experiência</div>
+        <div class="font-bold pb-1">{{ data.badgeTitle }}</div>
+        <div class="font-medium text-sm md:text-base">{{ data.badgeSubtitle }}</div>
       </div>
     </div>
 
     <!-- RIGHT SIDE -->
     <div>
       <h2 class="text-4xl md:text-5xl font-bold mb-12">
-        Sobre Nós
+        {{ data.title }}
       </h2>
 
       <p class="text-lg text-gray-800 leading-relaxed mb-8">
-        O Grupo Mirandas é uma empresa de referência no sector da construção em Portugal.
-        Com uma equipa altamente qualificada e comprometida com a qualidade, oferecemos
-        soluções completas de engenharia e construção para projetos residenciais,
-        comerciais e industriais.
+        {{ data.description }}
       </p>
 
-      <!-- FEATURES -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-        <div class="flex items-center gap-3">
-          <i class="fa-solid fa-circle-check text-lg" style="color: var(--primary-color)"></i>
-          <span class="text-gray-900">Qualidade Certificada</span>
-        </div>
-
-        <div class="flex items-center gap-3">
-          <i class="fa-solid fa-circle-check text-lg" style="color: var(--primary-color)"></i>
-          <span class="text-gray-900">Equipa Especializada</span>
-        </div>
-
-        <div class="flex items-center gap-3">
-          <i class="fa-solid fa-circle-check text-lg" style="color: var(--primary-color)"></i>
-          <span class="text-gray-900">Prazos Garantidos</span>
-        </div>
-
-        <div class="flex items-center gap-3">
-          <i class="fa-solid fa-circle-check text-lg" style="color: var(--primary-color)"></i>
-          <span class="text-gray-900">Orçamentos Transparentes</span>
-        </div>
+        @for (characteristic of data.characteristics; track characteristic.id) {
+          <!-- FEATURES -->
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-circle-check text-lg" style="color: var(--primary-color)"></i>
+            <span class="text-gray-900">{{ characteristic.text }}</span>
+          </div>
+        }
       </div>
     </div>
   </div>
