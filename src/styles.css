@@ -4,20 +4,20 @@
 
 
 :root {
-  --primary-color: #a4ca3a; /* blue-600 */
+  --primary-color: #87C33D; /* blue-600 #87C33D a4ca3a*/ 
   --secondary-color: #64748b; /* slate-500 */
-  --accent-color: #a4ca3a; /* amber-500 */
+  --accent-color: #87C33D; /* amber-500 */
   --background-color: #ed07f5; /* white */
   --text-color: #1f2937; /* gray-800 */
   --navbar-bg: #ffffff; /* gray-800 */
   --navbar-text: #333030; /* black */
   --hover-color: #546e0a;
   --shadow: #637a2428;
-  --shadow-hover: #a4ca3aa1;
+  --shadow-hover: #87C33Da1;
   --dark-shadow:#000000;
   /*--bg-light: #fdfffd;*/
   --bg-light: #ffffff;
-  --bg-dark: #dddddd;
+  --bg-dark: #dddddd;/*dddddd black */
   --fade-padding:30px;
 }
 

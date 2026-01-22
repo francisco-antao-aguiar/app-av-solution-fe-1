@@ -9,4 +9,22 @@ import {AboutUsModel} from '../../pages/home/home.model';
   styleUrl: './fade-light-to-dark.component.css',
 })
 export class FadeLightToDarkComponent {
+  private _startColor?: string;
+  private _endColor?: string;
+
+  @Input() set startColor(value: string | undefined) {
+    this._startColor = value;
+  }
+
+  @Input() set endColor(value: string | undefined) {
+    this._endColor = value;
+  }
+
+  get startColor(): string | undefined {
+    return this._startColor;
+  }
+
+  get endColor(): string | undefined {
+    return this._endColor;
+  }
 }
