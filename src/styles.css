@@ -12,11 +12,12 @@
   --navbar-bg: #ffffff; /* gray-800 */
   --navbar-text: #333030; /* black */
   --hover-color: #546e0a;
-  --shadow: #637a2428;  
+  --shadow: #637a2428;
   --shadow-hover: #a4ca3aa1;
   --dark-shadow:#000000;
-  --bg-light: #eb0808;
-  --bg-dark: #66ff00;
+  /*--bg-light: #fdfffd;*/
+  --bg-light: #ffffff;
+  --bg-dark: #f2f2f2;
 }
 
 /* Global background */
