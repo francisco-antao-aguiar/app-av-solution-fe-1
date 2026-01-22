@@ -1,3 +1,16 @@
 .projects{
-    background-color: var(--bg-light);
+  background: var(--bg-light);
+}
+
+.project {
+  background: var(--primary-color);
+
+  :hover {
+    background: var(--hover-color);
+  }
+
+  :focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--shadow-hover);
+  }
 }
