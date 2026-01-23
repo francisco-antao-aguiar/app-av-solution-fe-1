@@ -1,27 +1,7 @@
-<section class="projects w-full flex justify-center pb-10" id="projects">
-  <!-- Section header -->
-  <div class="w-7xl px-4 py-8">
-    <div class=" text-center mb-12">
-      <h2 class="text-3xl font-bold text-gray-900 md:text-4xl">
-        {{ data.title }}
-      </h2>
-
-      <div class="mx-auto mt-3 max-w-2xl text-sm text-gray-500 md:text-base">
-        {{ data.subtitle }}
-      </div>
-    </div>
-
-    <!-- Projects grid -->
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      @for (project of data.projects | slice:0:6; track project.id) {
-        <project-card-component [data]="project"></project-card-component>
-      }
-    </div>
-    <div class="mt-12 text-center">
-      <a class="project project-btn inline-flex items-center gap-2 rounded-lg  px-6 py-3 text-sm font-semibold text-white shadow-md transition
-              hover:shadow-lg focus:outline-none focus:ring-2  focus:ring-offset-2" routerLink="/projects">
-        Ver todos os projetos
-      </a>
-    </div>
-  </div>
-</section>
+<div>
+  <h1>{{ data.title }}</h1>
+  <p>{{ data.subtitle }}</p>
+  @for (project of data.projects; track project.id) {
+    <project-card-component [data]="project"></project-card-component>
+  }
+</div>

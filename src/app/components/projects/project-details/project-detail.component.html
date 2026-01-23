@@ -1,0 +1,38 @@
+<div>
+  <h1>{{ data.title }}</h1>
+  <h2>{{ data.subtitle }}</h2>
+  <div>
+    <h2>Informação</h2>
+    <div>
+      <i></i>
+      <p>Area total</p>
+      <p>{{ data.totalArea }}</p>
+    </div>
+    <div>
+      <i></i>
+      <p>Duração</p>
+      <p>{{ data.duration }} {{ data.durationUnit }}</p>
+    </div>
+    <div>
+      <i></i>
+      <p>Localização</p>
+      <p>{{ data.location }}</p>
+    </div>
+    <div>
+      <i></i>
+      <p>Ano</p>
+      <p>{{ data.year }}</p>
+    </div>
+  </div>
+  <div class="carossel">
+    <div class="go-left"></div>
+    @for (image of data.images; track $index) {
+      <!--        TODO: add better alt-->
+      <img
+        alt=""
+        src="{{image}}"
+      >
+    }
+    <div class="go-right"></div>
+  </div>
+</div>

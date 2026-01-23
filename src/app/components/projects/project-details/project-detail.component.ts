@@ -3,11 +3,11 @@ import {CommonModule} from '@angular/common';
 import {ProjectsCardModel} from '../../../pages/projects/projects.model';
 
 @Component({
-  selector: 'project-card-component',
+  selector: 'projects-detail-component',
   imports: [CommonModule],
-  templateUrl: './project-card.component.html',
-  styleUrl: './project-card.component.css',
+  templateUrl: './project-detail.component.html',
+  styleUrl: './project-detail.component.css',
 })
-export class ProjectCardComponent {
+export class ProjectsPreviewComponent {
   @Input() data!: ProjectsCardModel;
 }

@@ -1,16 +1,16 @@
 import {Component} from '@angular/core';
-import {HomeBannerComponent} from "../../components/home/home-banner.component";
+import {HomeBannerComponent} from "../../components/home-banner/home-banner.component";
 import {AboutUsComponent} from '../../components/about-us/about-us.component';
 import {HomeModel} from './home.model';
-import {ProjectsComponent} from "../../components/projects/projects.component";
 import {ServicesComponent} from "../../components/services/services.component";
 import {FadeLightToDarkComponent} from '../../components/fade-light-to-dark/fade-light-to-dark.component';
 import {FadeDarkToLightComponent} from "../../components/fade-dark-to-light/fade-dark-to-light.component";
 import {FooterComponent} from "../../components/footer/footer.component";
+import {ProjectsPreviewComponent} from '../../components/projects/projects-preview/projects-preview.component';
 
 @Component({
   selector: 'app-home',
-  imports: [HomeBannerComponent, AboutUsComponent, ProjectsComponent, ServicesComponent, FadeLightToDarkComponent, FadeDarkToLightComponent, FooterComponent],
+  imports: [HomeBannerComponent, AboutUsComponent, ProjectsPreviewComponent, ServicesComponent, FadeLightToDarkComponent, FadeDarkToLightComponent, FooterComponent, ProjectsPreviewComponent, ProjectsPreviewComponent, ProjectsPreviewComponent, ProjectsPreviewComponent],
   templateUrl: './home.page.html',
   styleUrl: './home.page.css',
 })
@@ -82,51 +82,69 @@ export class HomePage {
       projects: [
         {
           id: "1",
-          image: "/assets/home/projects/centro-comercial-atlantico.jpg",
+          images: ["/assets/home/projects/centro-comercial-atlantico.jpg"],
           title: "Centro Comercial Atlântico",
           subtitle: "Espaço comercial moderno",
           location: "Porto",
           year: 2023,
+          totalArea: 12000,
+          duration: 3,
+          durationUnit: "Anos",
         },
         {
           id: "2",
-          image: "/assets/home/projects/moradia-monte-verde.jpg",
+          images: ["/assets/home/projects/moradia-monte-verde.jpg"],
           title: "Moradia Familiar Monte Verde",
           subtitle: "Residência unifamiliar",
           location: "Cascais",
           year: 2024,
+          totalArea: 12000,
+          duration: 3,
+          durationUnit: "Anos",
         },
         {
           id: "3",
-          image: "/assets/home/projects/edificio-residencial-aurora.jpg",
+          images: ["/assets/home/projects/edificio-residencial-aurora.jpg"],
           title: "Edifício Residencial Aurora",
           subtitle: "Complexo residencial",
           location: "Lisboa",
           year: 2024,
+          totalArea: 12000,
+          duration: 3,
+          durationUnit: "Anos",
         },
         {
           id: "4",
-          image: "/assets/home/projects/nave-industrial-tejo.jpg",
+          images: ["/assets/home/projects/nave-industrial-tejo.jpg"],
           title: "Nave Industrial Tejo",
           subtitle: "Infraestrutura industrial",
           location: "Setúbal",
           year: 2023,
+          totalArea: 12000,
+          duration: 3,
+          durationUnit: "Anos",
         },
         {
           id: "5",
-          image: "/assets/home/projects/centro-comercial-atlantico.jpg",
+          images: ["/assets/home/projects/centro-comercial-atlantico.jpg"],
           title: "Centro Comercial Atlântico",
           subtitle: "Espaço comercial moderno",
           location: "Porto",
           year: 2023,
+          totalArea: 12000,
+          duration: 3,
+          durationUnit: "Anos",
         },
         {
           id: "6",
-          image: "/assets/home/projects/moradia-monte-verde.jpg",
+          images: ["/assets/home/projects/moradia-monte-verde.jpg"],
           title: "Moradia Familiar Monte Verde",
           subtitle: "Residência unifamiliar",
           location: "Cascais",
           year: 2024,
+          totalArea: 12000,
+          duration: 3,
+          durationUnit: "Anos",
         },
       ],
     },
