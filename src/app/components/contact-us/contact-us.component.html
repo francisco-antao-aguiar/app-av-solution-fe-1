@@ -1,10 +1,10 @@
 <section class="py-20 bg-linear-to-r contact text-white">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-        <h2 class="text-4xl font-bold mb-4">Pronto para começar seu projeto?</h2>
-      <p class="text-xl mb-8">Entre em contato conosco e receba um orçamento personalizado para a sua obra.</p>
-        <button class="btn btn-primary" onclick="app.scrollTo('contact')">
-            <i class="fas fa-envelope mr-2"></i>
-                Entre em Contacto
-        </button>
-    </div>
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="text-4xl font-bold mb-4">{{ data.title }}</h2>
+    <p class="text-xl mb-8">{{ data.subtitle }}</p>
+    <button class="btn btn-primary" onclick="app.scrollTo('contact')">
+      <i class="fas fa-envelope mr-2"></i>
+      {{ data.contactUsButtonText }}
+    </button>
+  </div>
 </section>

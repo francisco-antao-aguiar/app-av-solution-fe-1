@@ -6,12 +6,11 @@ import {ProjectsComponent} from "../../components/projects/projects.component";
 import {ServicesComponent} from "../../components/services/services.component";
 import {FadeLightToDarkComponent} from '../../components/fade-light-to-dark/fade-light-to-dark.component';
 import {FadeDarkToLightComponent} from "../../components/fade-dark-to-light/fade-dark-to-light.component";
-import {ContactUsComponent} from '../../components/contact-us/contact-us.component';
 import {FooterComponent} from "../../components/footer/footer.component";
 
 @Component({
   selector: 'app-home',
-  imports: [HomeBannerComponent, AboutUsComponent, ProjectsComponent, ServicesComponent, FadeLightToDarkComponent, FadeDarkToLightComponent, ContactUsComponent, FooterComponent],
+  imports: [HomeBannerComponent, AboutUsComponent, ProjectsComponent, ServicesComponent, FadeLightToDarkComponent, FadeDarkToLightComponent, FooterComponent],
   templateUrl: './home.page.html',
   styleUrl: './home.page.css',
 })
@@ -23,7 +22,7 @@ export class HomePage {
       subtitle: "Engenharia e Construção de Qualidade",
       description:
         "Grupo Mirandas é referência em projetos de engenharia e construção, oferecendo soluções completas com qualidade e confiança.",
-      budgetButtonText: "Solicite um Orçamento",
+      budgetButtonText: "Visite os nossos Projetos",
     },
 
     aboutUs: {
@@ -31,7 +30,7 @@ export class HomePage {
       title: "Sobre Nós",
       description:
         "O Grupo Mirandas é uma empresa de referência no setor da construção em Portugal. Com uma equipa altamente qualificada e comprometida com a qualidade, oferecemos soluções completas de engenharia e construção para projetos residenciais, comerciais e industriais.",
-      badgeTitle: "20 +",
+      badgeTitle: "9 +",
       badgeSubtitle: "Anos de Experiência",
       characteristics: [
         {id: "1", text: "Qualidade Certificada"},
