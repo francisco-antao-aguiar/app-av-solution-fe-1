@@ -1,7 +1,28 @@
-<div>
-  <h1>{{ data.title }}</h1>
-  <p>{{ data.subtitle }}</p>
-  @for (project of data.projects; track project.id) {
-    <project-card-component [data]="project"></project-card-component>
-  }
+<div class="max-w-6xl mx-auto px-4 py-16">
+  <!-- Header -->
+  <div class="mb-12 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900">
+      {{ data.title }}
+    </h1>
+    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+      {{ data.subtitle }}
+    </p>
+  </div>
+
+  <!-- Projects grid -->
+  <div
+    class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+  >
+    @for (project of data.projects; track project.id) {
+      <a
+        [routerLink]="['/projects', project.id]"
+        class="block group"
+      >
+        <project-card-component
+          [data]="project"
+          class="block"
+        ></project-card-component>
+      </a>
+    }
+  </div>
 </div>

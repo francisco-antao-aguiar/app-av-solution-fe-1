@@ -1,17 +1,18 @@
-import {Component} from '@angular/core';
-import {ProjectsComponent} from '../../components/projects/projects.component';
-import {ProjectsModel} from './projects.model';
+import {Component, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ActivatedRoute} from '@angular/router';
+import {ProjectsCardModel, ProjectsModel} from '../projects.model';
+import {ProjectsPageComponent} from '../../../components/projects/project-details/project-detail.component';
 
 @Component({
-  selector: 'app-portfolio',
-  imports: [
-    ProjectsComponent
-  ],
-  templateUrl: './projects.page.html',
-  styleUrl: './projects.page.css',
+  selector: 'projects-detail-page',
+  standalone: true,
+  imports: [CommonModule, ProjectsPageComponent],
+  templateUrl: './project-detail.page.html',
+  styleUrl: './project-detail.page.css',
 })
-export class ProjectsPage {
-  protected projectsData: ProjectsModel = {
+export class ProjectDetailPage implements OnInit {
+  projectsData: ProjectsModel = {
     title: "Nossos Projetos",
     subtitle:
       "Conheça alguns dos projetos que realizámos e que demonstram a nossa capacidade de execução.",
@@ -90,4 +91,19 @@ export class ProjectsPage {
       },
     ],
   };
+  projectData!: ProjectsCardModel;
+
+
+  constructor(private route: ActivatedRoute) {
+  }
+
+  ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (!id) return;
+
+    const project = this.projectsData.projects.find(p => p.id === id);
+    if (project) {
+      this.projectData = project;
+    }
+  }
 }

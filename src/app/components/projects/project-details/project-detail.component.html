@@ -1,38 +1,147 @@
-<div>
-  <h1>{{ data.title }}</h1>
-  <h2>{{ data.subtitle }}</h2>
-  <div>
-    <h2>Informação</h2>
-    <div>
-      <i></i>
-      <p>Area total</p>
-      <p>{{ data.totalArea }}</p>
+<div class="max-w-7xl mx-auto px-4 py-16 space-y-12">
+  <!-- Header -->
+  <div class="text-center space-y-2">
+    <h1 class="text-4xl md:text-5xl font-semibold text-green-900">
+      {{ data.title }}
+    </h1>
+    <h2 class="text-lg md:text-xl text-green-700">
+      {{ data.subtitle }}
+    </h2>
+  </div>
+
+  <div
+    (touchend)="onTouchEnd()"
+    (touchmove)="onTouchMove($event)"
+    (touchstart)="onTouchStart($event)"
+    class="relative w-full h-96 sm:h-112 md:h-144 lg:h-160 rounded-3xl overflow-hidden border border-green-100 bg-white shadow-sm"
+  >
+    @for (image of data.images; track $index; let i = $index) {
+      <img
+        [class.opacity-0]="currentImageIndex !== i"
+        [class.opacity-100]="currentImageIndex === i"
+        [src]="image"
+        alt=""
+        class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out"
+      />
+    }
+
+    <!-- Previous Button -->
+    <button
+      (click)="prev()"
+      class="absolute left-3 top-1/2 -translate-y-1/2 h-8 w-8 sm:h-11 sm:w-11 rounded-full bg-white/60 sm:bg-white/80 backdrop-blur border border-green-200 text-green-700 shadow hover:bg-white transition"
+    >
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+    <!-- Next Button -->
+    <button
+      (click)="next()"
+      class="absolute right-3 top-1/2 -translate-y-1/2 h-8 w-8 sm:h-11 sm:w-11 rounded-full bg-white/60 sm:bg-white/80 backdrop-blur border border-green-200 text-green-700 shadow hover:bg-white transition"
+    >
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
+
+
+  <div class="flex flex-col lg:flex-row gap-6">
+    <!-- Project Description -->
+    <div class="bg-white rounded-3xl border border-green-100 p-6 shadow-sm lg:w-3/5">
+      <h3 class="text-2xl font-semibold text-green-900 mb-4">Sobre o Projeto</h3>
+      <p class="text-green-700 leading-relaxed">
+        {{ data.description }}
+      </p>
     </div>
-    <div>
-      <i></i>
-      <p>Duração</p>
-      <p>{{ data.duration }} {{ data.durationUnit }}</p>
-    </div>
-    <div>
-      <i></i>
-      <p>Localização</p>
-      <p>{{ data.location }}</p>
-    </div>
-    <div>
-      <i></i>
-      <p>Ano</p>
-      <p>{{ data.year }}</p>
+
+    <!-- Information Cards -->
+    <div class="grid grid-cols-2 gap-4 py-4 lg:w-2/5">
+      <div
+        class="rounded-3xl bg-green-50/70 border border-green-100 p-4 flex flex-col items-center gap-2 text-center"
+      >
+        <i class="fa-solid fa-ruler-combined text-green-700 text-xl"></i>
+        <p class="text-xs text-green-600">Área total</p>
+        <p class="font-medium text-green-900 text-sm">{{ data.totalArea }} m<sup>2</sup></p>
+      </div>
+
+      <div
+        class="rounded-3xl bg-green-50/70 border border-green-100 p-4 flex flex-col items-center gap-2 text-center"
+      >
+        <i class="fa-solid fa-clock text-green-700 text-xl"></i>
+        <p class="text-xs text-green-600">Duração</p>
+        <p class="font-medium text-green-900 text-sm">{{ data.duration }} {{ data.durationUnit }}</p>
+      </div>
+
+      <div
+        class="rounded-3xl bg-green-50/70 border border-green-100 p-4 flex flex-col items-center gap-2 text-center"
+      >
+        <i class="fa-solid fa-location-dot text-green-700 text-xl"></i>
+        <p class="text-xs text-green-600">Localização</p>
+        <p class="font-medium text-green-900 text-sm">{{ data.location }}</p>
+      </div>
+
+      <div
+        class="rounded-3xl bg-green-50/70 border border-green-100 p-4 flex flex-col items-center gap-2 text-center"
+      >
+        <i class="fa-solid fa-calendar text-green-700 text-xl"></i>
+        <p class="text-xs text-green-600">Ano</p>
+        <p class="font-medium text-green-900 text-sm">{{ data.year }}</p>
+      </div>
     </div>
   </div>
-  <div class="carossel">
-    <div class="go-left"></div>
-    @for (image of data.images; track $index) {
-      <!--        TODO: add better alt-->
+
+
+  <!-- Image Thumbnails -->
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-4">
+    @for (image of data.images; track $index; let i = $index) {
       <img
+        (click)="openModal(i)"
+        [src]="image"
         alt=""
-        src="{{image}}"
-      >
+        class="w-full h-24 sm:h-32 object-cover rounded-lg cursor-pointer hover:opacity-80 transition"
+      />
     }
-    <div class="go-right"></div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    (click)="closeModal()"
+    *ngIf="isModalOpen"
+    class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/70 p-4"
+  >
+    <!-- Close Button -->
+    <button
+      (click)="closeModal()"
+      class="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full bg-white/80 text-green-700 hover:bg-white transition shadow-lg z-50"
+    >
+      <i class="fa-solid fa-xmark text-lg"></i>
+    </button>
+
+    <!-- Main Image Container -->
+    <div
+      (click)="$event.stopPropagation()"
+      class="relative max-w-[80vw] mb-4 flex items-center justify-center"
+    >
+      <img
+        [src]="data.images[selectedModalImageIndex]"
+        alt=""
+        class="max-w-full max-h-[calc(80vh-6rem)] object-contain rounded-xl shadow-lg"
+      />
+    </div>
+
+    <!-- Thumbnails pinned to bottom -->
+    <div
+      class="absolute bottom-4 left-0 w-[calc(100%-2rem)] mx-auto flex gap-3 overflow-x-auto px-4 justify-start sm:relative sm:bottom-auto sm:left-auto sm:justify-center always-scrollbar"
+      style="padding-bottom: 8px;"
+    >
+      <ng-container *ngFor="let image of data.images; let i = index">
+        <img
+          (click)="$event.stopPropagation(); selectedModalImageIndex = i"
+          [class.border-green-500]="i === selectedModalImageIndex"
+          [class.border-transparent]="i !== selectedModalImageIndex"
+          [src]="image"
+          alt=""
+          class="flex-shrink-0 w-28 h-20 sm:w-32 sm:h-24 object-cover rounded-lg cursor-pointer border-2"
+        />
+      </ng-container>
+    </div>
   </div>
 </div>

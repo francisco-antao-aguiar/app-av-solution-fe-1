@@ -3,6 +3,7 @@ export type ProjectsCardModel = {
   images: string[],
   title: string,
   subtitle: string,
+  description: string,
   location: string,
   year: number,
   totalArea: number,
