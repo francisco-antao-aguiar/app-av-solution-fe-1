@@ -5,6 +5,11 @@
   scrollbar-color: rgba(255, 255, 255, 0.6) rgba(0, 0, 0, 0.1);
 }
 
+.shadow:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px var(--shadow-hover);
+  cursor: pointer;
+}
 /*.modal-thumb-scroll::-webkit-scrollbar {*/
 /*  height: 8px;*/
 /*}*/
