@@ -7,10 +7,11 @@ import {FadeLightToDarkComponent} from '../../components/fade-light-to-dark/fade
 import {FadeDarkToLightComponent} from "../../components/fade-dark-to-light/fade-dark-to-light.component";
 import {FooterComponent} from "../../components/footer/footer.component";
 import {ProjectsPreviewComponent} from '../../components/projects/projects-preview/projects-preview.component';
+import {ContactUsComponent} from '../../components/contact-us/contact-us.component';
 
 @Component({
   selector: 'app-home',
-  imports: [HomeBannerComponent, AboutUsComponent, ProjectsPreviewComponent, ServicesComponent, FadeLightToDarkComponent, FadeDarkToLightComponent, FooterComponent, ProjectsPreviewComponent, ProjectsPreviewComponent, ProjectsPreviewComponent, ProjectsPreviewComponent],
+  imports: [HomeBannerComponent, AboutUsComponent, ProjectsPreviewComponent, ServicesComponent, FadeLightToDarkComponent, FadeDarkToLightComponent, FooterComponent, ProjectsPreviewComponent, ProjectsPreviewComponent, ProjectsPreviewComponent, ProjectsPreviewComponent, ContactUsComponent],
   templateUrl: './home.page.html',
   styleUrl: './home.page.css',
 })

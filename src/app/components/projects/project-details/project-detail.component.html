@@ -13,16 +13,18 @@
     (touchend)="onTouchEnd()"
     (touchmove)="onTouchMove($event)"
     (touchstart)="onTouchStart($event)"
-    class="relative w-full h-96 sm:h-112 md:h-144 lg:h-160 rounded-3xl overflow-hidden border border-green-100 bg-white shadow-sm"
+    class="relative w-full h-96 sm:h-112 md:h-144 lg:h-160 rounded-3xl overflow-hidden"
   >
     @for (image of data.images; track $index; let i = $index) {
-      <img
-        [class.opacity-0]="currentImageIndex !== i"
-        [class.opacity-100]="currentImageIndex === i"
-        [src]="image"
-        alt=""
-        class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out"
-      />
+      <div class="absolute inset-0 flex justify-center items-center w-full h-full">
+        <img
+          [class.opacity-0]="currentImageIndex !== i"
+          [class.opacity-100]="currentImageIndex === i"
+          [src]="image"
+          alt=""
+          class="rounded-2xl object-contain object-center transition-opacity duration-500 ease-in-out max-w-full max-h-full"
+        />
+      </div>
     }
 
     <!-- Previous Button -->
@@ -102,23 +104,24 @@
   </div>
 
   <!-- Modal -->
+  <!-- Modal Overlay -->
   <div
-    (click)="closeModal()"
     *ngIf="isModalOpen"
     class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/70 p-4"
+    (click)="closeModal()"
   >
     <!-- Close Button -->
     <button
-      (click)="closeModal()"
-      class="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full bg-white/80 text-green-700 hover:bg-white transition shadow-lg z-50"
+      (click)="closeModal(); $event.stopPropagation()"
+      class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/80 text-green-700 hover:bg-white transition shadow-lg z-50 flex items-center justify-center"
     >
       <i class="fa-solid fa-xmark text-lg"></i>
     </button>
 
-    <!-- Main Image Container -->
+    <!-- Main Image -->
     <div
       (click)="$event.stopPropagation()"
-      class="relative max-w-[80vw] mb-4 flex items-center justify-center"
+      class="relative max-w-[80vw] mb-24 flex items-center justify-center"
     >
       <img
         [src]="data.images[selectedModalImageIndex]"
@@ -127,21 +130,37 @@
       />
     </div>
 
-    <!-- Thumbnails pinned to bottom -->
+    <!-- Thumbnail Scroll -->
     <div
-      class="absolute bottom-4 left-0 w-[calc(100%-2rem)] mx-auto flex gap-3 overflow-x-auto px-4 justify-start sm:relative sm:bottom-auto sm:left-auto sm:justify-center always-scrollbar"
-      style="padding-bottom: 8px;"
+      (click)="$event.stopPropagation()"
+      class="fixed bottom-0 left-0 w-full z-50 flex justify-center bg-black/40 backdrop-blur-md always-scrollbar"
     >
-      <ng-container *ngFor="let image of data.images; let i = index">
-        <img
-          (click)="$event.stopPropagation(); selectedModalImageIndex = i"
-          [class.border-green-500]="i === selectedModalImageIndex"
-          [class.border-transparent]="i !== selectedModalImageIndex"
-          [src]="image"
-          alt=""
-          class="flex-shrink-0 w-28 h-20 sm:w-32 sm:h-24 object-cover rounded-lg cursor-pointer border-2"
-        />
-      </ng-container>
+      <div
+        #modalThumbsContainer
+        class="flex gap-5 overflow-x-auto px-8 py-5 w-full max-w-[98vw] xl:max-w-375 modal-thumb-scroll"
+        style="padding-bottom: 16px;"
+      >
+        @for (image of data.images; track $index; let i = $index) {
+          <img
+            #thumbnail
+            (click)="selectModalImage(i)"
+            [class.border-green-500]="i === selectedModalImageIndex"
+            [class.border-transparent]="i !== selectedModalImageIndex"
+            [src]="image"
+            alt=""
+            class="
+            shrink-0
+            w-32 h-24
+            lg:w-36 lg:h-26
+            object-cover
+            rounded-xl
+            cursor-pointer
+            border-2
+            transition
+          "
+          />
+        }
+      </div>
     </div>
   </div>
 </div>

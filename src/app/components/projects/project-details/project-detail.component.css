@@ -1,0 +1,20 @@
+/* ===== MODAL THUMBNAIL SCROLLBAR (GLOBAL) ===== */
+
+.modal-thumb-scroll {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(255, 255, 255, 0.6) rgba(0, 0, 0, 0.1);
+}
+
+/*.modal-thumb-scroll::-webkit-scrollbar {*/
+/*  height: 8px;*/
+/*}*/
+
+/*.modal-thumb-scroll::-webkit-scrollbar-track {*/
+/*  background-color: rgba(0, 0, 0, 0.85);*/
+/*  border-radius: 9999px;*/
+/*}*/
+
+/*.modal-thumb-scroll::-webkit-scrollbar-thumb {*/
+/*  background-color: rgba(255, 255, 255, 0.6);*/
+/*  border-radius: 9999px;*/
+/*}*/
