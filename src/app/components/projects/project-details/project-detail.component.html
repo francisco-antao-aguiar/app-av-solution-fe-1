@@ -10,7 +10,7 @@
   </div>
 
   <div
-    (touchend)="onTouchEnd()"
+    (touchend)="onTouchEnd($event)"
     (touchmove)="onTouchMove($event)"
     (touchstart)="onTouchStart($event)"
     class="relative w-full h-96 sm:h-112 md:h-144 lg:h-160 rounded-3xl overflow-hidden"
@@ -30,7 +30,7 @@
     <!-- Previous Button -->
     <button
       (click)="prev()"
-      class="absolute left-3 top-1/2 -translate-y-1/2 h-8 w-8 sm:h-11 sm:w-11 rounded-full bg-white/60 sm:bg-white/80 backdrop-blur border border-green-200 text-green-700 shadow hover:bg-white transition"
+      class="cursor-pointer absolute left-3 top-1/2 -translate-y-1/2 h-8 w-8 sm:h-11 sm:w-11 rounded-full bg-white/60 sm:bg-white/80 backdrop-blur border border-green-200 text-green-700 shadow hover:bg-white transition"
     >
       <i class="fa-solid fa-chevron-left"></i>
     </button>
@@ -38,7 +38,7 @@
     <!-- Next Button -->
     <button
       (click)="next()"
-      class="absolute right-3 top-1/2 -translate-y-1/2 h-8 w-8 sm:h-11 sm:w-11 rounded-full bg-white/60 sm:bg-white/80 backdrop-blur border border-green-200 text-green-700 shadow hover:bg-white transition"
+      class="cursor-pointer absolute right-3 top-1/2 -translate-y-1/2 h-8 w-8 sm:h-11 sm:w-11 rounded-full bg-white/60 sm:bg-white/80 backdrop-blur border border-green-200 text-green-700 shadow hover:bg-white transition"
     >
       <i class="fa-solid fa-chevron-right"></i>
     </button>
@@ -104,7 +104,6 @@
   </div>
 
   <!-- Modal -->
-  <!-- Modal Overlay -->
   <div
     *ngIf="isModalOpen"
     class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/70 p-4"
@@ -113,13 +112,16 @@
     <!-- Close Button -->
     <button
       (click)="closeModal(); $event.stopPropagation()"
-      class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/80 text-green-700 hover:bg-white transition shadow-lg z-50 flex items-center justify-center"
+      class="cursor-pointer absolute top-4 right-4 w-10 h-10 rounded-full bg-white/80 text-green-700 hover:bg-white transition shadow-lg z-50 flex items-center justify-center"
     >
       <i class="fa-solid fa-xmark text-lg"></i>
     </button>
 
     <!-- Main Image -->
     <div
+      (touchend)="onModalTouchEnd()"
+      (touchmove)="onTouchMove($event)"
+      (touchstart)="onTouchStart($event)"
       (click)="$event.stopPropagation()"
       class="relative max-w-[80vw] mb-24 flex items-center justify-center"
     >
@@ -160,6 +162,23 @@
           "
           />
         }
+        <!-- Previous Button -->
+        <button
+          (click)="prevModalImage(); $event.stopPropagation()"
+          class="cursor-pointer absolute left-4 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full
+         bg-white/80 text-green-700 shadow hover:bg-white transition z-50"
+        >
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <!-- Next Button -->
+        <button
+          (click)="nextModalImage(); $event.stopPropagation()"
+          class="cursor-pointer absolute right-4 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full
+         bg-white/80 text-green-700 shadow hover:bg-white transition z-50"
+        >
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
       </div>
     </div>
   </div>

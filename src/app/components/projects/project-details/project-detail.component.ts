@@ -43,9 +43,14 @@ export class ProjectsPageComponent {
   }
 
   scrollThumbnailIntoView(index: number) {
-    if (!this.isDesktop()) {
-      return
+    if (this.isDesktop()) {
+      this.scrollThumbnailIntoViewDesktop(index);
+    } else {
+      this.scrollThumbnailIntoViewMobile(index);
     }
+  }
+
+  scrollThumbnailIntoViewDesktop(index: number) {
     const container = this.modalThumbsContainer.nativeElement as HTMLElement;
     const thumbnail = container.children[index] as HTMLElement;
 
@@ -59,6 +64,22 @@ export class ProjectsPageComponent {
       left: scrollLeft,
       behavior: 'smooth'
     });
+  }
+
+  scrollThumbnailIntoViewMobile(index: number) {
+    const container = this.modalThumbsContainer.nativeElement as HTMLElement;
+    const thumbnail = container.children[index] as HTMLElement;
+
+    const thumbnailLeft = thumbnail.offsetLeft;
+    const thumbnailWidth = thumbnail.offsetWidth;
+
+    const scrollLeft = thumbnailLeft - thumbnailWidth - 20; // magic number hehe
+
+    container.scrollTo({
+      left: scrollLeft,
+      behavior: 'smooth'
+    });
+
   }
 
   closeModal() {
@@ -80,7 +101,11 @@ export class ProjectsPageComponent {
   }
 
   // Touch end
-  onTouchEnd() {
+  onTouchEnd(event: TouchEvent) {
+    if ((event.target as HTMLElement).closest('button')) {
+      return;
+    }
+
     const diff = this.startX - this.endX;
     if (Math.abs(diff) > 50) {
       // swipe threshold
@@ -90,5 +115,37 @@ export class ProjectsPageComponent {
         this.prev();
       }
     }
+  }
+
+  // Touch end
+  onModalTouchEnd() {
+    const diff = this.startX - this.endX;
+    if (Math.abs(diff) > 50) {
+      // swipe threshold
+      if (diff > 0) {
+        this.nextModalImage();
+      } else {
+        this.prevModalImage();
+      }
+    }
+  }
+
+  prevModalImage() {
+    if (!this.data?.images?.length) return;
+
+    this.selectedModalImageIndex =
+      (this.selectedModalImageIndex - 1 + this.data.images.length) %
+      this.data.images.length;
+
+    this.scrollThumbnailIntoView(this.selectedModalImageIndex);
+  }
+
+  nextModalImage() {
+    if (!this.data?.images?.length) return;
+
+    this.selectedModalImageIndex =
+      (this.selectedModalImageIndex + 1) % this.data.images.length;
+
+    this.scrollThumbnailIntoView(this.selectedModalImageIndex);
   }
 }
