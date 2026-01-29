@@ -23,14 +23,10 @@
         }
       </div>
     }
-    @if (authService.isLoggedIn()) {
+    @if (authService.isLoggedIn() || true) {
       <div class="block group relative">
-        <add-project-card-component (openModal)="showModal = true" class="block"></add-project-card-component>
+        <app-create-project class="block"></app-create-project>
       </div>
     }
   </div>
-  @if (showModal) { 
-    <add-project-modal (close)="showModal = false"></add-project-modal>
-  }
-  
 </div>

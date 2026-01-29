@@ -1,5 +1,5 @@
 <!-- Backdrop -->
-<div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+<div (click)="close.emit()" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
 
   <!-- Modal -->
   <div class="bg-white w-full max-w-lg rounded-xl p-6 relative">
@@ -49,6 +49,7 @@
 
         <img
           [src]="img.url"
+          alt=""
           class="w-full h-full object-cover" />
 
         <button

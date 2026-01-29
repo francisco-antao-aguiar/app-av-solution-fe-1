@@ -1,6 +1,7 @@
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {Component, EventEmitter, Output} from '@angular/core';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {ProjectPayload} from '../project-payload.model';
 
 interface ImagePreview {
   file: File;
@@ -8,12 +9,13 @@ interface ImagePreview {
 }
 
 @Component({
-  selector: 'add-project-modal',
-  templateUrl: './add-project-modal.component.html',
+  selector: 'app-create-project-modal',
+  templateUrl: './app-create-project-card-modal.component.html',
   imports: [CommonModule, ReactiveFormsModule ],
 })
-export class AddProjectModalComponent {
-  @Output() close = new EventEmitter<void>();
+export class CreateProjectCardModal {
+  @Output() newProjectInfo = new EventEmitter<ProjectPayload>();
+  @Output() close = new EventEmitter<ProjectPayload>();
 
   form: FormGroup;
   images: ImagePreview[] = [];
@@ -48,12 +50,21 @@ export class AddProjectModalComponent {
   submit() {
     if (this.form.invalid) return;
 
-    const payload = {
-      ...this.form.value,
-      images: this.images.map(i => i.file)
+    const images = this.images.map(i => i.file)
+
+    const payload: ProjectPayload = {
+      project: {
+        ...this.form.value,
+        location: '',
+        year: '',
+        totalArea: '',
+        duration: '',
+        durationUnit: '',
+      },
+      images
     };
 
     console.log(payload);
-    this.close.emit();
+    this.newProjectInfo.emit(payload);
   }
 }
