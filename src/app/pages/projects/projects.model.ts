@@ -1,6 +1,5 @@
 export type ProjectsCardModel = {
   id: string,
-  images: string[],
   title: string,
   subtitle: string,
   description: string,
@@ -9,10 +8,11 @@ export type ProjectsCardModel = {
   totalArea: number,
   duration: number,
   durationUnit: string,
+  imageIds: string[],
 }
 
 export type ProjectsModel = {
   title: string,
   subtitle: string,
-  projects: ProjectsCardModel[]
+  project: ProjectsCardModel[]
 }

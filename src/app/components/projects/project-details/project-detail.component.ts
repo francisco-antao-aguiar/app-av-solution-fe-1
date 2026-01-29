@@ -17,12 +17,12 @@ export class ProjectsPageComponent {
   endX = 0;
 
   next() {
-    this.currentImageIndex = (this.currentImageIndex + 1) % this.data.images.length;
+    this.currentImageIndex = (this.currentImageIndex + 1) % this.data.imageIds.length;
   }
 
   prev() {
     this.currentImageIndex =
-      (this.currentImageIndex - 1 + this.data.images.length) % this.data.images.length;
+      (this.currentImageIndex - 1 + this.data.imageIds.length) % this.data.imageIds.length;
   }
 
   @ViewChild('modalThumbsContainer') modalThumbsContainer!: ElementRef;
@@ -131,20 +131,20 @@ export class ProjectsPageComponent {
   }
 
   prevModalImage() {
-    if (!this.data?.images?.length) return;
+    if (!this.data?.imageIds?.length) return;
 
     this.selectedModalImageIndex =
-      (this.selectedModalImageIndex - 1 + this.data.images.length) %
-      this.data.images.length;
+      (this.selectedModalImageIndex - 1 + this.data.imageIds.length) %
+      this.data.imageIds.length;
 
     this.scrollThumbnailIntoView(this.selectedModalImageIndex);
   }
 
   nextModalImage() {
-    if (!this.data?.images?.length) return;
+    if (!this.data?.imageIds?.length) return;
 
     this.selectedModalImageIndex =
-      (this.selectedModalImageIndex + 1) % this.data.images.length;
+      (this.selectedModalImageIndex + 1) % this.data.imageIds.length;
 
     this.scrollThumbnailIntoView(this.selectedModalImageIndex);
   }

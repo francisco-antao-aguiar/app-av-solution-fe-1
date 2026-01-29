@@ -15,7 +15,7 @@
     (touchstart)="onTouchStart($event)"
     class="relative w-full h-96 sm:h-112 md:h-144 lg:h-160 rounded-3xl overflow-hidden"
   >
-    @for (image of data.images; track $index; let i = $index) {
+    @for (image of data.imageIds; track $index; let i = $index) {
       <div class="absolute inset-0 flex justify-center items-center w-full h-full">
         <img
           [class.opacity-0]="currentImageIndex !== i"
@@ -93,7 +93,7 @@
 
   <!-- Image Thumbnails -->
   <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-4">
-    @for (image of data.images; track $index; let i = $index) {
+    @for (image of data.imageIds; track $index; let i = $index) {
       <img
         (click)="openModal(i)"
         [src]="image"
@@ -127,7 +127,7 @@
       class="relative max-w-[80vw] mb-24 flex items-center justify-center"
     >
       <img
-        [src]="data.images[selectedModalImageIndex]"
+        [src]="data.imageIds[selectedModalImageIndex]"
         alt=""
         class="max-w-full max-h-[calc(80vh-6rem)] object-contain rounded-xl shadow-lg"
       />
@@ -143,7 +143,7 @@
         class="flex gap-5 overflow-x-auto px-8 py-5 w-full max-w-[98vw] xl:max-w-375 modal-thumb-scroll"
         style="padding-bottom: 16px;"
       >
-        @for (image of data.images; track $index; let i = $index) {
+        @for (image of data.imageIds; track $index; let i = $index) {
           <img
             #thumbnail
             (click)="selectModalImage(i)"

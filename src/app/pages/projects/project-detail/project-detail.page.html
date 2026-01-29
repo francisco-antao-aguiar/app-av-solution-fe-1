@@ -1,1 +1,13 @@
-<projects-detail-component [data]="projectData"></projects-detail-component>
+@if (isLoading()) {
+  <div>
+    Loading project details...
+  </div>
+} @else if (error()) {
+  <div>
+    Error.
+  </div>
+} @else if (response()) {
+  <projects-detail-component [data]="response()!"></projects-detail-component>
+} @else {
+  <div>No project found.</div>
+}

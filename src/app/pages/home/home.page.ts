@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit, signal} from '@angular/core';
 import {HomeBannerComponent} from "../../components/home-banner/home-banner.component";
 import {AboutUsComponent} from '../../components/about-us/about-us.component';
 import {HomeModel} from './home.model';
@@ -8,6 +8,8 @@ import {FadeDarkToLightComponent} from "../../components/fade-dark-to-light/fade
 import {FooterComponent} from "../../components/footer/footer.component";
 import {ProjectsPreviewComponent} from '../../components/projects/projects-preview/projects-preview.component';
 import {ContactUsComponent} from '../../components/contact-us/contact-us.component';
+import {HttpClient} from '@angular/common/http';
+import {ProjectsModel} from '../projects/projects.model';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +17,7 @@ import {ContactUsComponent} from '../../components/contact-us/contact-us.compone
   templateUrl: './home.page.html',
   styleUrl: './home.page.css',
 })
-export class HomePage {
+export class HomePage implements OnInit {
   protected homeData: HomeModel = {
     homeBanner: {
       image: "assets/home/banner.png",
@@ -80,10 +82,10 @@ export class HomePage {
       title: "Nossos Projetos",
       subtitle:
         "Conheça alguns dos projetos que realizámos e que demonstram a nossa capacidade de execução.",
-      projects: [
+      project: [
         {
           id: "1",
-          images: ["/assets/home/projects/centro-comercial-atlantico.jpg", "/assets/home/projects/moradia-monte-verde.jpg", "/assets/home/projects/centro-comercial-atlantico.jpg", "/assets/home/projects/edificio-residencial-aurora.jpg"],
+          imageIds: ["/assets/home/projects/centro-comercial-atlantico.jpg", "/assets/home/projects/moradia-monte-verde.jpg", "/assets/home/projects/centro-comercial-atlantico.jpg", "/assets/home/projects/edificio-residencial-aurora.jpg"],
           title: "Centro Comercial Atlântico",
           subtitle: "Espaço comercial moderno",
           description: "Projeto que combina luxo e sustentabilidade, com acabamento premium, sistema de automação residencial e certificação LEED. Conta com área de lazer completa, academia, piscina e salão de festas.",
@@ -95,7 +97,7 @@ export class HomePage {
         },
         {
           id: "2",
-          images: ["/assets/home/projects/moradia-monte-verde.jpg"],
+          imageIds: ["/assets/home/projects/moradia-monte-verde.jpg"],
           title: "Moradia Familiar Monte Verde",
           subtitle: "Residência unifamiliar",
           description: "Projeto que combina luxo e sustentabilidade, com acabamento premium, sistema de automação residencial e certificação LEED. Conta com área de lazer completa, academia, piscina e salão de festas.",
@@ -107,7 +109,7 @@ export class HomePage {
         },
         {
           id: "3",
-          images: ["/assets/home/projects/edificio-residencial-aurora.jpg"],
+          imageIds: ["/assets/home/projects/edificio-residencial-aurora.jpg"],
           title: "Edifício Residencial Aurora",
           subtitle: "Complexo residencial",
           description: "Projeto que combina luxo e sustentabilidade, com acabamento premium, sistema de automação residencial e certificação LEED. Conta com área de lazer completa, academia, piscina e salão de festas.",
@@ -119,7 +121,7 @@ export class HomePage {
         },
         {
           id: "4",
-          images: ["/assets/home/projects/nave-industrial-tejo.jpg"],
+          imageIds: ["/assets/home/projects/nave-industrial-tejo.jpg"],
           title: "Nave Industrial Tejo",
           subtitle: "Infraestrutura industrial",
           description: "Projeto que combina luxo e sustentabilidade, com acabamento premium, sistema de automação residencial e certificação LEED. Conta com área de lazer completa, academia, piscina e salão de festas.",
@@ -131,7 +133,7 @@ export class HomePage {
         },
         {
           id: "5",
-          images: ["/assets/home/projects/centro-comercial-atlantico.jpg"],
+          imageIds: ["/assets/home/projects/centro-comercial-atlantico.jpg"],
           title: "Centro Comercial Atlântico",
           subtitle: "Espaço comercial moderno",
           description: "Projeto que combina luxo e sustentabilidade, com acabamento premium, sistema de automação residencial e certificação LEED. Conta com área de lazer completa, academia, piscina e salão de festas.",
@@ -143,7 +145,7 @@ export class HomePage {
         },
         {
           id: "6",
-          images: ["/assets/home/projects/moradia-monte-verde.jpg"],
+          imageIds: ["/assets/home/projects/moradia-monte-verde.jpg"],
           title: "Moradia Familiar Monte Verde",
           subtitle: "Residência unifamiliar",
           description: "Projeto que combina luxo e sustentabilidade, com acabamento premium, sistema de automação residencial e certificação LEED. Conta com área de lazer completa, academia, piscina e salão de festas.",
@@ -168,4 +170,35 @@ export class HomePage {
       location: "Portugal",
     },
   };
+  protected readonly response = signal<ProjectsModel | null>(null);
+  protected readonly isLoading = signal(false);
+  protected readonly error = signal<string | null>(null);
+
+  constructor(private http: HttpClient) {
+  }
+
+  ngOnInit() {
+    this.fetchProjectHome();
+  }
+
+  protected fetchProjectHome(): void {
+    this.isLoading.set(true);
+    this.error.set(null);
+
+    this.http.get<ProjectsModel>(`/api/project`).subscribe({
+      next: (data) => {
+        data.project = data.project.map(
+          project => {
+            return {...project, imageIds: project.imageIds?.map(imageId => `/api/images/${imageId}`)}
+          }
+        );
+        this.response.set(data);
+        this.isLoading.set(false);
+      },
+      error: (err) => {
+        this.error.set(err?.message || 'Failed to fetch project details endpoint');
+        this.isLoading.set(false);
+      }
+    });
+  }
 }

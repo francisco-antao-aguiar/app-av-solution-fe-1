@@ -1,93 +1,54 @@
-import {Component} from '@angular/core';
+import {Component, signal} from '@angular/core';
 import {ProjectsComponent} from '../../components/projects/projects.component';
 import {ProjectsModel} from './projects.model';
+import {HttpClient} from '@angular/common/http';
+import {ProjectsService} from '../../components/utils/services/projects.service';
+import {toSignal} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-portfolio',
   imports: [
-    ProjectsComponent
+    ProjectsComponent,
   ],
   templateUrl: './projects.page.html',
   styleUrl: './projects.page.css',
 })
 export class ProjectsPage {
-  protected projectsData: ProjectsModel = {
-    title: "Nossos Projetos",
-    subtitle:
-      "Conheça alguns dos projetos que realizámos e que demonstram a nossa capacidade de execução.",
-    projects: [
-      {
-        id: "1",
-        images: ["/assets/home/projects/centro-comercial-atlantico.jpg", "/assets/home/projects/moradia-monte-verde.jpg", "/assets/home/projects/centro-comercial-atlantico.jpg", "/assets/home/projects/edificio-residencial-aurora.jpg"],
-        title: "Centro Comercial Atlântico",
-        subtitle: "Espaço comercial moderno",
-        description: "Projeto que combina luxo e sustentabilidade, com acabamento premium, sistema de automação residencial e certificação LEED. Conta com área de lazer completa, academia, piscina e salão de festas.",
-        location: "Porto",
-        year: 2023,
-        totalArea: 12000,
-        duration: 3,
-        durationUnit: "Anos",
+  protected readonly isLoading = signal(false);
+  protected readonly error = signal<string | null>(null);
+  protected projects!: ReturnType<typeof toSignal<ProjectsModel | null>>;
+
+  constructor(
+    private http: HttpClient,
+    protected projectsService: ProjectsService
+  ) {
+    this.fetchProject();
+    this.projects = toSignal<ProjectsModel | null>(
+      this.projectsService.projects$,
+      {initialValue: null}
+    );
+  }
+
+  protected fetchProject(): void {
+    this.isLoading.set(true);
+    this.error.set(null);
+
+    this.http.get<ProjectsModel>(`/api/project`).subscribe({
+      next: (data) => {
+        data.project = data.project.map(project => ({
+          ...project,
+          imageIds: project.imageIds?.map(
+            imageId => `/api/images/${imageId}`
+          )
+        }));
+
+        this.projectsService.setItems(data);
+        this.isLoading.set(false);
       },
-      {
-        id: "2",
-        images: ["/assets/home/projects/moradia-monte-verde.jpg"],
-        title: "Moradia Familiar Monte Verde",
-        subtitle: "Residência unifamiliar",
-        description: "Projeto que combina luxo e sustentabilidade, com acabamento premium, sistema de automação residencial e certificação LEED. Conta com área de lazer completa, academia, piscina e salão de festas.",
-        location: "Cascais",
-        year: 2024,
-        totalArea: 12000,
-        duration: 3,
-        durationUnit: "Anos",
-      },
-      {
-        id: "3",
-        images: ["/assets/home/projects/edificio-residencial-aurora.jpg"],
-        title: "Edifício Residencial Aurora",
-        subtitle: "Complexo residencial",
-        description: "Projeto que combina luxo e sustentabilidade, com acabamento premium, sistema de automação residencial e certificação LEED. Conta com área de lazer completa, academia, piscina e salão de festas.",
-        location: "Lisboa",
-        year: 2024,
-        totalArea: 12000,
-        duration: 3,
-        durationUnit: "Anos",
-      },
-      {
-        id: "4",
-        images: ["/assets/home/projects/nave-industrial-tejo.jpg"],
-        title: "Nave Industrial Tejo",
-        subtitle: "Infraestrutura industrial",
-        description: "Projeto que combina luxo e sustentabilidade, com acabamento premium, sistema de automação residencial e certificação LEED. Conta com área de lazer completa, academia, piscina e salão de festas.",
-        location: "Setúbal",
-        year: 2023,
-        totalArea: 12000,
-        duration: 3,
-        durationUnit: "Anos",
-      },
-      {
-        id: "5",
-        images: ["/assets/home/projects/centro-comercial-atlantico.jpg"],
-        title: "Centro Comercial Atlântico",
-        subtitle: "Espaço comercial moderno",
-        description: "Projeto que combina luxo e sustentabilidade, com acabamento premium, sistema de automação residencial e certificação LEED. Conta com área de lazer completa, academia, piscina e salão de festas.",
-        location: "Porto",
-        year: 2023,
-        totalArea: 12000,
-        duration: 3,
-        durationUnit: "Anos",
-      },
-      {
-        id: "6",
-        images: ["/assets/home/projects/moradia-monte-verde.jpg"],
-        title: "Moradia Familiar Monte Verde",
-        subtitle: "Residência unifamiliar",
-        description: "Projeto que combina luxo e sustentabilidade, com acabamento premium, sistema de automação residencial e certificação LEED. Conta com área de lazer completa, academia, piscina e salão de festas.",
-        location: "Cascais",
-        year: 2024,
-        totalArea: 12000,
-        duration: 3,
-        durationUnit: "Anos",
-      },
-    ],
-  };
+      error: (err) => {
+        this.error.set(err?.message || 'Failed to fetch project details endpoint');
+        this.isLoading.set(false);
+      }
+    });
+  }
 }
