@@ -10,27 +10,27 @@
   </div>
 
   <!-- Projects grid -->
-  <div
-    class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-  >
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
     @for (project of data.project; track project.id) {
       <div class="block group relative">
-        <a
-          [routerLink]="['/projects', project.id]"
-          class="block group"
-        >
-          <project-card-component
-            [data]="project"
-            class="block"
-          ></project-card-component>
-
+        <a [routerLink]="['/projects', project.id]" class="block group" >
+          <project-card-component [data]="project" class="block"></project-card-component>
         </a>
-        @if (isAdmin) {
+        @if (authService.isLoggedIn()) {
           <div class="absolute top-0 right-0 size-16 pointer-events-auto">
             <app-delete-button [projectId]="project.id"></app-delete-button>
           </div>
         }
       </div>
     }
+    @if (authService.isLoggedIn()) {
+      <div class="block group relative">
+        <add-project-card-component (openModal)="showModal = true" class="block"></add-project-card-component>
+      </div>
+    }
   </div>
+  @if (showModal) { 
+    <add-project-modal (close)="showModal = false"></add-project-modal>
+  }
+  
 </div>
