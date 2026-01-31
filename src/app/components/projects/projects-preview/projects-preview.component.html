@@ -12,9 +12,12 @@
     </div>
 
     <!-- Projects grid -->
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="projects-grid grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       @for (project of data.project | slice:0:6; track project.id) {
-        <project-card-component [data]="project"></project-card-component>
+        <project-card-component
+          [data]="project"
+          class="project-card">
+        </project-card-component>
       }
     </div>
     <div class="mt-12 text-center">

@@ -24,7 +24,12 @@ export class CreateProjectCardModal {
     this.form = this.fb.group({
       title: ['', Validators.required],
       subtitle: [''],
-      description: ['']
+      description: [''],
+      location: [''],
+      year: [null],
+      totalArea: [null],
+      duration: [null],
+      durationUnit: ['']
     });
   }
 

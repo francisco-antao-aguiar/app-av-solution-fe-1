@@ -1,8 +1,8 @@
 <!-- Backdrop -->
-<div (click)="close.emit()" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+<div class="fixed inset-0 bg-black/50 z-50 overflow-y-auto">
 
   <!-- Modal -->
-  <div class="bg-white w-full max-w-lg rounded-xl p-6 relative">
+  <div class="bg-white w-full max-w-lg rounded-xl p-6 relative mx-auto my-8 sm:my-16">
 
     <!-- Close -->
     <button
@@ -19,47 +19,88 @@
         type="text"
         placeholder="Title"
         formControlName="title"
-        class="w-full border rounded px-3 py-2" />
+        class="w-full border rounded px-3 py-2"/>
 
       <input
         type="text"
         placeholder="Subtitle"
         formControlName="subtitle"
-        class="w-full border rounded px-3 py-2" />
+        class="w-full border rounded px-3 py-2"/>
 
       <textarea
         rows="4"
         placeholder="Description"
         formControlName="description"
-        class="w-full border rounded px-3 py-2">
+        class="w-full h-50 border rounded px-3 py-2">
       </textarea>
+
+      <!-- Location -->
+      <input
+        class="w-full border rounded px-3 py-2"
+        formControlName="location"
+        placeholder="Location"
+        type="text"/>
+
+      <!-- Year -->
+      <input
+        class="w-full border rounded px-3 py-2 no-spinner"
+        formControlName="year"
+        placeholder="Year"
+        type="number"/>
+
+      <!-- Total Area -->
+      <input
+        class="w-full border rounded px-3 py-2"
+        formControlName="totalArea"
+        placeholder="Total Area (m²)"
+        type="number"/>
+
+      <!-- Duration + Unit -->
+      <div class="flex gap-3">
+        <input
+          class="w-full border rounded px-3 py-2"
+          formControlName="duration"
+          placeholder="Duration"
+          type="number"/>
+
+        <select
+          class="w-40 border rounded px-3 py-2 bg-white"
+          formControlName="durationUnit">
+          <option disabled value="">Select</option>
+          <option value="anos">anos</option>
+          <option value="meses">meses</option>
+          <option value="dias">dias</option>
+        </select>
+      </div>
+
 
       <!-- Image upload -->
       <input
         type="file"
+        accept="image/*"
         multiple
         (change)="onFileSelect($event)"
-        class="w-full" />
+        class="w-full"/>
 
       <!-- Image previews -->
-     <div class="flex flex-wrap gap-3 mt-3">
-      <div
-        *ngFor="let img of images; let i = index"
-        class="relative w-20 h-20 border rounded overflow-hidden">
+      <div class="flex flex-wrap gap-3 mt-3">
+        <div
+          *ngFor="let img of images; let i = index"
+          class="relative w-20 h-20 border rounded overflow-hidden">
 
-        <img
-          [src]="img.url"
-          alt=""
-          class="w-full h-full object-cover" />
+          <img
+            [src]="img.url"
+            alt=""
+            class="w-full h-full object-cover"/>
 
-        <button
-          type="button"
-          class="absolute top-1 right-1 bg-black/60 text-white rounded-full w-5 h-5 text-xs"
-          (click)="removeImage(i)">
-          ✕
-        </button>
+          <button
+            (click)="removeImage(i)"
+            class="absolute top-1 right-1 bg-black/60 text-white rounded-full w-5 h-5 text-xs"
+            type="button">
+            ✕
+          </button>
+        </div>
       </div>
-    </div>
 
       <!-- Submit -->
       <button

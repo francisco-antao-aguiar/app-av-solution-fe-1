@@ -21,6 +21,21 @@ export class DeleteProjectButton {
   ) {
   }
 
+  showConfirm = false;
+
+  openConfirm() {
+    this.showConfirm = true;
+  }
+
+  closeConfirm() {
+    this.showConfirm = false;
+  }
+
+  confirmDelete(event: MouseEvent) {
+    this.showConfirm = false;
+    this.delete(event);
+  }
+
   protected delete(event: MouseEvent): void {
     event.stopPropagation();
     this.isLoading.set(true);
