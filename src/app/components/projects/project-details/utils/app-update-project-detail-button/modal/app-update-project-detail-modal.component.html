@@ -1,0 +1,136 @@
+<!-- Backdrop -->
+<div class="fixed inset-0 bg-black/50 z-50 overflow-y-auto">
+
+  <!-- Modal -->
+  <div class="bg-white w-full max-w-lg rounded-xl p-6 relative mx-auto my-8 sm:my-16">
+
+    <!-- Close -->
+    <button
+      (click)="close.emit()"
+      class="absolute top-3 right-3 text-gray-500 hover:text-black"
+      type="button">
+      ✕
+    </button>
+
+    <h2 class="text-xl font-semibold mb-4">Edit Project</h2>
+
+    <form [formGroup]="form" class="space-y-4">
+
+      <!-- Title -->
+      <div class="space-y-1">
+        <label class="text-sm font-medium text-gray-600">Title</label>
+        <input
+          class="w-full border rounded px-3 py-2"
+          formControlName="title"
+          type="text"/>
+      </div>
+
+      <!-- Subtitle -->
+      <div class="space-y-1">
+        <label class="text-sm font-medium text-gray-600">Subtitle</label>
+        <input
+          class="w-full border rounded px-3 py-2"
+          formControlName="subtitle"
+          type="text"/>
+      </div>
+
+      <!-- Description -->
+      <div class="space-y-1">
+        <label class="text-sm font-medium text-gray-600">Description</label>
+        <textarea
+          class="w-full border rounded px-3 py-2"
+          formControlName="description"
+          rows="4">
+        </textarea>
+      </div>
+
+      <!-- Location -->
+      <div class="space-y-1">
+        <label class="text-sm font-medium text-gray-600">Location</label>
+        <input
+          class="w-full border rounded px-3 py-2"
+          formControlName="location"
+          type="text"/>
+      </div>
+
+      <!-- Year -->
+      <div class="space-y-1">
+        <label class="text-sm font-medium text-gray-600">Year</label>
+        <input
+          class="w-full border rounded px-3 py-2 no-spinner"
+          formControlName="year"
+          type="number"/>
+      </div>
+
+      <!-- Total Area -->
+      <div class="space-y-1">
+        <label class="text-sm font-medium text-gray-600">Total Area (m²)</label>
+        <input
+          class="w-full border rounded px-3 py-2"
+          formControlName="totalArea"
+          type="number"/>
+      </div>
+
+      <!-- Duration -->
+      <div class="space-y-1">
+        <label class="text-sm font-medium text-gray-600">Duration</label>
+        <div class="flex gap-3">
+          <input
+            class="w-full border rounded px-3 py-2"
+            formControlName="duration"
+            type="number"/>
+
+          <select
+            class="w-40 border rounded px-3 py-2 bg-white"
+            formControlName="durationUnit">
+            <option disabled value="">Select</option>
+            <option value="anos">anos</option>
+            <option value="meses">meses</option>
+            <option value="dias">dias</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Image Upload -->
+      <div class="space-y-1">
+        <label class="text-sm font-medium text-gray-600">Images</label>
+        <input
+          (change)="onFileSelect($event)"
+          accept="image/*"
+          class="w-full"
+          multiple
+          type="file"/>
+      </div>
+
+      <!-- Image Previews -->
+      <div class="flex flex-wrap gap-3 mt-3">
+        <div
+          *ngFor="let img of images; let i = index"
+          class="relative w-20 h-20 border rounded overflow-hidden">
+
+          <img
+            [src]="img.url"
+            class="w-full h-full object-cover"/>
+
+          <button
+            (click)="removeImage(i)"
+            class="absolute top-1 right-1 bg-black/60 text-white rounded-full w-5 h-5 text-xs"
+            type="button">
+            ✕
+          </button>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <button
+        (click)="submit()"
+        [disabled]="form.invalid"
+        class="w-full mt-4 py-2 rounded text-white disabled:opacity-50"
+        style="background-color: var(--primary-color);"
+        type="button">
+        Save Project
+      </button>
+
+    </form>
+  </div>
+</div>

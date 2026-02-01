@@ -6,8 +6,6 @@
   <div>
     Error.
   </div>
-} @else if (response()) {
-  <projects-detail-component [data]="response()!"></projects-detail-component>
 } @else {
-  <div>No project found.</div>
+  <projects-detail-component [data]="projects()!.project.at(0)!"></projects-detail-component>
 }

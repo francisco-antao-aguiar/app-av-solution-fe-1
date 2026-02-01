@@ -1,7 +1,8 @@
 import {CommonModule} from '@angular/common';
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ProjectPayload} from '../project-detail-payload.model';
+import {ProjectsCardModel} from '../../../../../../pages/projects/projects.model';
 
 interface ImagePreview {
   file: File;
@@ -11,9 +12,10 @@ interface ImagePreview {
 @Component({
   selector: 'app-update-project-detail-modal',
   templateUrl: './app-update-project-detail-modal.component.html',
-  imports: [CommonModule, ReactiveFormsModule ],
+  imports: [CommonModule, ReactiveFormsModule],
 })
-export class CreateProjectCardModal {
+export class CreateProjectCardModal implements OnChanges {
+  @Input() projectCard!: ProjectsCardModel;
   @Output() newProjectInfo = new EventEmitter<ProjectPayload>();
   @Output() close = new EventEmitter<ProjectPayload>();
 
@@ -26,11 +28,26 @@ export class CreateProjectCardModal {
       subtitle: [''],
       description: [''],
       location: [''],
-      year: [null],
-      totalArea: [null],
-      duration: [null],
+      year: [''],
+      totalArea: [''],
+      duration: [''],
       durationUnit: ['']
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['projectCard'] && this.projectCard) {
+      this.form.patchValue({
+        title: this.projectCard.title,
+        subtitle: this.projectCard.subtitle,
+        description: this.projectCard.description,
+        location: this.projectCard.location,
+        year: this.projectCard.year,
+        totalArea: this.projectCard.totalArea,
+        duration: this.projectCard.duration,
+        durationUnit: this.projectCard.durationUnit
+      });
+    }
   }
 
   onFileSelect(event: Event) {

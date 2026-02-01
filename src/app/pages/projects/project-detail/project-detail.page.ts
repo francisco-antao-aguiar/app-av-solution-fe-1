@@ -1,9 +1,11 @@
-import {Component, OnInit, signal} from '@angular/core';
+import {Component, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
-import {ProjectsCardModel} from '../projects.model';
+import {ProjectsCardModel, ProjectsModel} from '../projects.model';
 import {ProjectsPageComponent} from '../../../components/projects/project-details/project-detail.component';
 import {HttpClient} from '@angular/common/http';
+import {ProjectsService} from '../../../components/utils/services/projects.service';
+import {toSignal} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'projects-detail-page',
@@ -12,20 +14,25 @@ import {HttpClient} from '@angular/common/http';
   templateUrl: './project-detail.page.html',
   styleUrl: './project-detail.page.css',
 })
-export class ProjectDetailPage implements OnInit {
+export class ProjectDetailPage {
 
   protected readonly response = signal<ProjectsCardModel | null>(null);
   protected readonly isLoading = signal(false);
   protected readonly error = signal<string | null>(null);
+  protected projects!: ReturnType<typeof toSignal<ProjectsModel | null>>;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {
-  }
-
-  ngOnInit() {
+  constructor(private route: ActivatedRoute,
+              private http: HttpClient,
+              protected projectsService: ProjectsService) {
     const id = this.route.snapshot.paramMap.get('id');
     if (!id) return;
 
     this.fetchProjectDetails(id);
+
+    this.projects = toSignal<ProjectsModel | null>(
+      this.projectsService.projects$,
+      {initialValue: null}
+    );
   }
 
   protected fetchProjectDetails(id: string): void {
@@ -35,7 +42,11 @@ export class ProjectDetailPage implements OnInit {
     this.http.get<ProjectsCardModel>(`/api/project/${id}`).subscribe({
       next: (data) => {
         // data.imageIds = data.imageIds?.map(imageId => `/api/images/${imageId}`)
-        this.response.set(data);
+        this.projectsService.setItems({
+          title: "",
+          subtitle: "",
+          project: [data],
+        })
         this.isLoading.set(false);
       },
       error: (err) => {

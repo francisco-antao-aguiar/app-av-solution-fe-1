@@ -1,10 +1,14 @@
 import {Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ProjectsCardModel} from '../../../pages/projects/projects.model';
+import {
+  DeleteProjectDetailButton
+} from './utils/app-delete-project-detail-button/app-delete-project-detail-image-button.component';
+import {CreateProjectCard} from './utils/app-update-project-detail-button/app-update-project-detail.component';
 
 @Component({
   selector: 'projects-detail-component',
-  imports: [CommonModule],
+  imports: [CommonModule, DeleteProjectDetailButton, CreateProjectCard],
   templateUrl: './project-detail.component.html',
   styleUrl: './project-detail.component.css',
 })

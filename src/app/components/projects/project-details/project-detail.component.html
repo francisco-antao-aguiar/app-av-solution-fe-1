@@ -1,6 +1,9 @@
 <div class="max-w-7xl mx-auto px-4 py-16 space-y-12">
   <!-- Header -->
-  <div class="text-center space-y-2">
+  <div class="relative text-center space-y-2">
+    <div class="absolute -top-14 right-40 size-16 pointer-events-auto">
+      <app-update-project-detail [projectCard]="data"></app-update-project-detail>
+    </div>
     <h1 class="text-4xl md:text-5xl font-semibold text-green-900">
       {{ data.title }}
     </h1>
@@ -94,16 +97,21 @@
   <!-- Image Thumbnails -->
   <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-4">
     @for (image of data.imageIds; track $index; let i = $index) {
-      <img
-        (click)="openModal(i)"
-        [src]="`/api/images/${image}`"
-        alt=""
-        class="w-full shadow h-24 sm:h-32 object-cover rounded-lg cursor-pointer hover:opacity-80 transition"
-      />
+      <div class="relative">
+        <img
+          (click)="openModal(i)"
+          [src]="`/api/images/${image}`"
+          alt=""
+          class="w-full shadow h-24 sm:h-32 object-cover rounded-lg cursor-pointer hover:opacity-80 transition"
+        />
+
+        <div class="absolute top-1 right-1 z-10">
+          <app-delete-detail-image-button [imageId]="image"></app-delete-detail-image-button>
+        </div>
+      </div>
     }
   </div>
 
-  <!-- Modal -->
   <!-- Modal Overlay -->
   <div
     *ngIf="isModalOpen"

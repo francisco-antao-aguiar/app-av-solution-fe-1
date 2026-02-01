@@ -26,4 +26,22 @@ export class ProjectsService {
     const updatedProjects = [...current.project, newProject];
     this.projectsSubject.next({...current, project: updatedProjects});
   }
+
+  deleteImage(removeImageId: string) {
+    const current = this.projectsSubject.value;
+
+    const updatedProjects = current.project.map(
+      (projectCardModel: ProjectsCardModel) => ({
+        ...projectCardModel,
+        imageIds: projectCardModel.imageIds.filter(
+          imageId => imageId !== removeImageId
+        )
+      })
+    );
+
+    this.projectsSubject.next({
+      ...current,
+      project: updatedProjects
+    });
+  }
 }

@@ -6,8 +6,8 @@
 
     <!-- Close -->
     <button
-      class="absolute top-3 right-3 text-gray-500 hover:text-black"
-      (click)="close.emit()">
+      (click)="close.emit()"
+      class="absolute top-3 right-3 text-gray-500 hover:text-black">
       ✕
     </button>
 
@@ -16,22 +16,22 @@
     <form [formGroup]="form" class="space-y-3">
 
       <input
-        type="text"
-        placeholder="Title"
+        class="w-full border rounded px-3 py-2"
         formControlName="title"
-        class="w-full border rounded px-3 py-2"/>
+        placeholder="Title"
+        type="text"/>
 
       <input
-        type="text"
-        placeholder="Subtitle"
+        class="w-full border rounded px-3 py-2"
         formControlName="subtitle"
-        class="w-full border rounded px-3 py-2"/>
+        placeholder="Subtitle"
+        type="text"/>
 
       <textarea
-        rows="4"
-        placeholder="Description"
+        class="w-full h-50 border rounded px-3 py-2"
         formControlName="description"
-        class="w-full h-50 border rounded px-3 py-2">
+        placeholder="Description"
+        rows="4">
       </textarea>
 
       <!-- Location -->
@@ -76,11 +76,11 @@
 
       <!-- Image upload -->
       <input
-        type="file"
-        accept="image/*"
-        multiple
         (change)="onFileSelect($event)"
-        class="w-full"/>
+        accept="image/*"
+        class="w-full"
+        multiple
+        type="file"/>
 
       <!-- Image previews -->
       <div class="flex flex-wrap gap-3 mt-3">
@@ -104,11 +104,11 @@
 
       <!-- Submit -->
       <button
-        type="button"
-        class="w-full mt-4 py-2 rounded text-white disabled:opacity-50"
+        (click)="submit()"
         [disabled]="form.invalid"
+        class="w-full mt-4 py-2 rounded text-white disabled:opacity-50"
         style="background-color: var(--primary-color);"
-        (click)="submit()">
+        type="button">
         Save Project
       </button>
 

@@ -4,8 +4,8 @@ import {ProjectsModel} from '../../pages/projects/projects.model';
 import {ProjectCardComponent} from './project-card/project-card.component';
 import {RouterLink} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
-import {DeleteProjectButton} from './utils2/app-delete-project-button/app-delete-project-button.component';
-import {CreateProjectCard} from './utils2/app-create-project-button/app-create-project-button.component';
+import {DeleteProjectButton} from './utils/app-delete-project-button/app-delete-project-button.component';
+import {CreateProjectCard} from './utils/app-create-project-button/app-create-project-button.component';
 
 @Component({
   selector: 'projects-component',
