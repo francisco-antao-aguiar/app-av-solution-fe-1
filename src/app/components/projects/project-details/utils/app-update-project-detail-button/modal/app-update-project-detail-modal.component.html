@@ -98,11 +98,29 @@
         multiple
         type="file"/>
 
+      <!-- Image previews -->
+      <div class="flex flex-wrap gap-3 mt-3">
+        <div
+          *ngFor="let img of images; let i = index"
+          class="relative w-20 h-20 border rounded overflow-hidden">
+
+          <img
+            [src]="img.url"
+            alt=""
+            class="w-full h-full object-cover"/>
+
+          <button
+            (click)="removeImage(i)"
+            class="absolute top-1 right-1 bg-black/60 text-white rounded-full w-5 h-5 text-xs"
+            type="button">
+            ✕
+          </button>
+        </div>
+      </div>
       <!-- Submit -->
       <button
         class="w-full mt-4 py-2 rounded-lg text-white disabled:opacity-50"
         (click)="submit()"
-        [disabled]="form.invalid"
         style="background-color: var(--primary-color);"
         type="button">
         Save Project

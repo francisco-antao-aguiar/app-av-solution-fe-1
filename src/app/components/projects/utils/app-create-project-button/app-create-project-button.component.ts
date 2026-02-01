@@ -65,7 +65,7 @@ export class CreateProjectCard {
       })
     ).subscribe({
       next: (projectCreated) => {
-        this.projectsService.addItem({
+        this.projectsService.addProject({
           ...projectCreated,
         });
         this.isLoading.set(false);

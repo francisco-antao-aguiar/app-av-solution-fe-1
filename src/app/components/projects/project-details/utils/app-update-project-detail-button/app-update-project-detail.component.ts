@@ -54,10 +54,11 @@ export class CreateProjectCard {
       switchMap((imageIds: string[]) => {
         const newProject: ProjectsCardModel = {
           ...projectPayload.project,
+          id: this.projectCard.id,
           imageIds
         };
 
-        return this.http.post<string>(`/api/project/create`, newProject).pipe(
+        return this.http.patch<string>(`/api/project/update/${this.projectCard.id}`, newProject).pipe(
           map((id: string) => ({
             ...newProject,
             id  // add the returned id
@@ -66,8 +67,10 @@ export class CreateProjectCard {
       })
     ).subscribe({
       next: (projectCreated) => {
-        this.projectsService.addItem({
+        this.projectsService.updateProjects({
           ...projectCreated,
+          id: this.projectCard.id,
+          imageIds: this.projectCard.imageIds.concat(projectCreated.imageIds),
         });
         this.isLoading.set(false);
         this.showModal = false;
