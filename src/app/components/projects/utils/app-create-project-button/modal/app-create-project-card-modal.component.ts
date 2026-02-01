@@ -60,11 +60,6 @@ export class CreateProjectCardModal {
     const payload: ProjectPayload = {
       project: {
         ...this.form.value,
-        location: '',
-        year: '',
-        totalArea: '',
-        duration: '',
-        durationUnit: '',
       },
       images
     };

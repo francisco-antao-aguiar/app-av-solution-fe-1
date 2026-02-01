@@ -38,3 +38,14 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
   -moz-appearance: textfield; /* Firefox */
 }
+
+.floating-label {
+  @apply absolute left-3 top-2 text-xs text-gray-500 transition-all
+  peer-placeholder-shown:top-4
+  peer-placeholder-shown:text-sm
+  peer-placeholder-shown:text-gray-400
+  peer-focus:top-2
+  peer-focus:text-xs
+  peer-focus:text-gray-900;
+}
+

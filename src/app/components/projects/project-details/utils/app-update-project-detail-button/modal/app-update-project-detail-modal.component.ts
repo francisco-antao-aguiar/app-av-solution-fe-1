@@ -12,6 +12,7 @@ interface ImagePreview {
 @Component({
   selector: 'app-update-project-detail-modal',
   templateUrl: './app-update-project-detail-modal.component.html',
+  styleUrl: './app-update-project-detail-modal.component.css',
   imports: [CommonModule, ReactiveFormsModule],
 })
 export class CreateProjectCardModal implements OnChanges {
@@ -77,11 +78,6 @@ export class CreateProjectCardModal implements OnChanges {
     const payload: ProjectPayload = {
       project: {
         ...this.form.value,
-        location: '',
-        year: '',
-        totalArea: '',
-        duration: '',
-        durationUnit: '',
       },
       images
     };
