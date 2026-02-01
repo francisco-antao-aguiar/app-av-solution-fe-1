@@ -24,10 +24,17 @@
     </div>
     <div class="flex justify-evenly flex-wrap gap-10">
       @for (client of this.clients; track $index) {
-        <div class="flex justify-center items-center hover:shadow-2xl transition-shadow duration-300">
+        <div (click)="openUrl(client.url)"
+             class="relative flex justify-center items-center hover:shadow-2xl transition-shadow duration-300"
+             style="cursor: pointer;">
           <img [src]="`/api/images/${client.image}`" alt="Client" class="object-contain h-32 w-full"/>
+
+          <div class="absolute top-1 right-1 pointer-events-auto">
+            <app-delete-client-button [clientId]="client.id!"></app-delete-client-button>
+          </div>
         </div>
       }
+
       <div class="flex justify-center items-center hover:shadow-2xl transition-shadow duration-300">
         <app-create-client></app-create-client>
       </div>

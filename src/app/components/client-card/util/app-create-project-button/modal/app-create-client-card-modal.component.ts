@@ -11,7 +11,7 @@ interface ImagePreview {
 
 @Component({
   selector: 'app-create-client-modal',
-  templateUrl: './app-create-project-card-modal.component.html',
+  templateUrl: './app-create-client-card-modal.component.html',
   imports: [CommonModule, ReactiveFormsModule],
 })
 export class CreateClientModal {

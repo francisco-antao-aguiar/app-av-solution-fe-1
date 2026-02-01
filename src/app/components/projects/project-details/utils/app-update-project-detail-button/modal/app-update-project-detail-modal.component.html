@@ -65,6 +65,16 @@
         <label class="floating-label">Year</label>
       </div>
 
+      <!-- Total Area -->
+      <div class="relative">
+        <input
+          class="peer w-full border rounded-lg px-3 pt-5 pb-2 text-sm"
+          formControlName="totalArea"
+          placeholder="Total Area (m²)"
+          type="number"/>
+        <label class="floating-label">Year</label>
+      </div>
+
       <div class="flex gap-3">
         <!-- Duration -->
         <div class="relative flex-1">
@@ -82,9 +92,9 @@
             class="peer w-full border rounded-lg px-3 pt-5 pb-2 text-sm bg-white"
             formControlName="durationUnit">
             <option disabled value=""></option>
-            <option value="anos">anos</option>
-            <option value="meses">meses</option>
-            <option value="dias">dias</option>
+            <option value="anos">Anos</option>
+            <option value="meses">Meses</option>
+            <option value="dias">Dias</option>
           </select>
           <label class="floating-label select-label">Unit</label>
         </div>

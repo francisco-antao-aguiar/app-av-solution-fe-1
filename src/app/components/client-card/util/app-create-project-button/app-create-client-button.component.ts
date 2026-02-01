@@ -2,14 +2,14 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, signal} from '@an
 import {CommonModule} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import {switchMap} from 'rxjs';
-import {CreateClientModal} from './modal/app-create-project-card-modal.component';
+import {CreateClientModal} from './modal/app-create-client-card-modal.component';
 import {ClientModel, ClientPayload} from './client-payload.model';
 
 @Component({
   selector: 'app-create-client',
   imports: [CommonModule, CreateClientModal],
-  templateUrl: './app-create-project-button.component.html',
-  styleUrl: './app-create-project-button.component.css',
+  templateUrl: './app-create-client-button.component.html',
+  styleUrl: './app-create-client-button.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreateClient {

@@ -3,6 +3,7 @@ export type ClientPayload = {
   image: File
 }
 export type ClientModel = {
+  id?: string,
   url: string,
   image: string
 }
