@@ -12,5 +12,10 @@ import { AuthService } from '../../services/auth.service';
 })
 export class FooterComponent {
   @Input() data!: ContactsModel;
+  protected pageId: string = 'contacts';
   protected authService = inject(AuthService);
+
+  updateLabels(event: any) {
+    this.data = event;
+  } 
 }

@@ -15,14 +15,20 @@
 
     <form [formGroup]="form" class="space-y-3">
         @for(formcontrolName of form.controls | keyvalue; track formcontrolName.key) {
-          <div class="flex flex-col">
-            <label class="mb-1 font-medium text-gray-700">{{formcontrolName.key}}</label>
+          <div class="relative">
             <input
               class="peer w-full border rounded-lg px-3 pt-5 pb-2 text-sm"
               [formControlName]="formcontrolName.key"
-              [placeholder]="formcontrolName.key"
-              type="text"/>
+              type="text"
+              [ngClass]="{
+        'border-red-500': form.get(formcontrolName.key)?.invalid 
+                          && (form.get(formcontrolName.key)?.touched 
+                          || form.get(formcontrolName.key)?.dirty),
+        'border-gray-300': form.get(formcontrolName.key)?.valid
+      }"/>
+              <label class="floating-label">{{formcontrolName.key}}</label>
           </div>
+          
         }
       <!-- Submit -->
       <button

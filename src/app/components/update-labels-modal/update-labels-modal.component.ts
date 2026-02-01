@@ -12,7 +12,7 @@ import { ProjectsCardModel } from '../../pages/projects/projects.model';
 export class UpdateLabelsModal {
   @Input() labels!: any;
   @Input() pageId!: string;
-  @Output() newProjectInfo = new EventEmitter<any>();
+  @Output() updateLabelFunc = new EventEmitter<any>();
   @Output() close = new EventEmitter<any>();
 
   form: FormGroup;
@@ -27,8 +27,9 @@ export class UpdateLabelsModal {
   }
 
    private buildForm() {
+    this.form = this.fb.group({});
     Object.keys(this.labels).forEach(key => {
-      if (!this.form.contains(key)) {
+      if(this.labels[key]?.ignore !== true) {
         this.form.addControl(
           key,
           new FormControl(this.labels[key], Validators.required)
@@ -47,6 +48,6 @@ export class UpdateLabelsModal {
       },
     };
     console.log(payload);
-    this.newProjectInfo.emit(payload);
+    this.updateLabelFunc.emit(payload);
   }
 }

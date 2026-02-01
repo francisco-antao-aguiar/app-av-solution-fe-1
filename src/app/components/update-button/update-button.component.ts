@@ -1,4 +1,4 @@
-import {Component, Input, signal} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import { UpdateLabelsModal } from "../update-labels-modal/update-labels-modal.component";
@@ -8,15 +8,17 @@ import { UpdateLabelsModal } from "../update-labels-modal/update-labels-modal.co
   imports: [CommonModule, UpdateLabelsModal],
   templateUrl: './update-button.component.html',
   styleUrl: './update-button.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UpdateProjectButton {
   @Input() input!: any;
   @Input() pageId!: string;
+  @Output() labelsUpdatedEvent = new EventEmitter<any>();
   protected showModal: boolean = false;
   protected readonly isLoading = signal(false);
   protected readonly error = signal<string | null>(null);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
   protected openModal() {
     this.showModal = true;
@@ -24,6 +26,8 @@ export class UpdateProjectButton {
 
   protected closeModal() {
     this.showModal = false;
+    this.cdr.markForCheck();
+    this.cdr.detectChanges();
   }
 
   protected update(projectPayload: any): void {
@@ -34,6 +38,7 @@ export class UpdateProjectButton {
         console.log('Project updated successfully', response);  
         this.isLoading.set(false);
         this.closeModal();
+        this.labelsUpdatedEvent.emit(projectPayload[this.pageId]);
       },
       error: (err) => {
         this.error.set(err?.message || 'Failed to update project');

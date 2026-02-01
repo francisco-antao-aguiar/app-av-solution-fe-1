@@ -1,5 +1,13 @@
 <section class="about w-full flex justify-center items-center pt-10" id="about-us">
+  
   <div class="max-w-7xl mx-auto px-4 py-8">
+    @if(authService.isLoggedIn()) {
+      <section class="relative py-4 services pt-10" id="services" >
+          <div class="absolute top-0 right-0 size-16 pointer-events-auto">
+            <app-update-project-button (labelsUpdatedEvent)="updateLabels($event)" [input]="data" [pageId]="pageId"></app-update-project-button>
+          </div>
+      </section>
+    }
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
       <!-- LEFT SIDE -->
@@ -25,6 +33,7 @@
 
       <!-- RIGHT SIDE -->
       <div>
+        
         <h2 class="text-4xl md:text-5xl font-bold mb-12">
           {{ data.title }}
         </h2>
