@@ -1,0 +1,8 @@
+.iconbtn {
+    background-color: var(--primary-color);
+}
+
+.iconbtn:hover {
+    box-shadow: 0 0px 25px var(--shadow-hover);
+    background-color: var(--dark-green);
+}

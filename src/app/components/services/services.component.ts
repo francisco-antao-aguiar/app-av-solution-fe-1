@@ -1,6 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, SimpleChanges} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ServicesModel} from '../../pages/home/home.model';
+import {ServicesCardModel, ServicesModel} from '../../pages/home/home.model';
 
 @Component({
   selector: 'services-component',
@@ -10,4 +10,42 @@ import {ServicesModel} from '../../pages/home/home.model';
 })
 export class ServicesComponent {
   @Input() data!: ServicesModel;
+
+   ngOnChanges(changes: SimpleChanges): void {
+    if (changes['data'] && this.data) {
+      this.data = {
+        ...this.data,
+        cards: this.buildCards(this.data),
+      };
+    }
+  }
+  
+  private buildCards(data: any): ServicesCardModel[] {
+    return [
+      {
+        id: '1',
+        icon: data.card1Icon,
+        title: data.card1Title,
+        description: data.card1,
+      },
+      {
+        id: '2',
+        icon: data.card2Icon,
+        title: data.card2Title,
+        description: data.card2,
+      },
+      {
+        id: '3',
+        icon: data.card3Icon,
+        title: data.card3Title,
+        description: data.card3,
+      },
+      {
+        id: '4',
+        icon: data.card4Icon,
+        title: data.card4Title,
+        description: data.card4,
+      },
+    ];
+  }
 }

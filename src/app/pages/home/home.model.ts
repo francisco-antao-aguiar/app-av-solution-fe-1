@@ -54,4 +54,5 @@ export type ContactsModel = {
   telephone: string,
   email: string,
   location: string,
+  subtitle: string,
 }

@@ -1,0 +1,15 @@
+.labelsModal{
+    color: black;
+}
+
+/* Forces label to float when select has a value */
+.select-label {
+  top: 0.5rem;
+}
+
+/* Keep label down ONLY when value is empty */
+select:has(option:checked[value=""]) + .select-label {
+  top: 1rem;
+  font-size: 0.875rem;
+  color: #9ca3af; /* gray-400 */
+}
