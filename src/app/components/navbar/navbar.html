@@ -13,7 +13,7 @@
           <a class="px-3 py-2 text-sm  hover-bg transition-colors" routerLink="/projects"
              routerLinkActive="active-underline">Projetos</a>
           <a routerLink="/about-us" routerLinkActive="active-underline" class="px-3 py-2 text-sm  hover-bg transition-colors">Clientes</a>
-          @if (authService.isLoggedIn()) {
+          @if (authService.isLoggedIn() && false) {
             <a routerLink="/test" routerLinkActive="active-underline" class="px-3 py-2 text-sm  hover-bg transition-colors">Test Admin</a>
           }
         </div>
@@ -54,7 +54,7 @@
            class="block px-3 py-3 text-base  hover-bg rounded-md transition-all duration-200" routerLink="/projects"
            routerLinkActive="active-underline">Projetos</a>
         <a (click)="closeMobileMenu()" routerLink="/about-us" routerLinkActive="active-underline" class="block px-3 py-3 text-base hover-bg rounded-md transition-all duration-200">Clientes</a>
-        @if (authService.isLoggedIn()) {
+        @if (authService.isLoggedIn() && false) {
           <a (click)="closeMobileMenu()" routerLink="/test" routerLinkActive="active-underline" class="block px-3 py-3 text-base  hover-bg rounded-md transition-all duration-200">Test Admin</a>
         }
         @if (authService.isLoggedIn()) {

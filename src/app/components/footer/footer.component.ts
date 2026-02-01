@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './footer.component.css',
 })
 export class FooterComponent {
-  @Input() data!: ContactsModel;
+  @Input() data!: any;
   protected pageId: string = 'contacts';
   protected authService = inject(AuthService);
 
