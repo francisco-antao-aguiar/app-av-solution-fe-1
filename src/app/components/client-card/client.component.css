@@ -1,0 +1,14 @@
+.banner-track {
+  display: flex;
+  width: max-content; /* makes the track shrink to fit images */
+  animation: scroll 25s linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
