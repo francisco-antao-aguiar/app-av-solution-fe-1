@@ -1,25 +1,31 @@
 <div class="bg-white w-full pt-4 pb-4">
-  <div class="mb-12 text-center pb-8 pt-8">
-    <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900">
-      Os Nossos Clientes
-    </h1>
-  </div>
   @if (this.displayType === 'banner') {
     <div class="relative w-full h-24 overflow-hidden">
       <div class="absolute flex whitespace-nowrap banner-track">
-        @for (img of this.images; track $index) {
-          <img [src]=img alt="Client" class="h-24 mx-2 object-contain"/>
+        @for (client of this.clients; track $index) {
+          <img [src]="`/api/images/${client.image}`" alt="Client" class="h-24 mx-2 object-contain"/>
         }
-        @for (img of this.images; track $index) {
-          <img [src]=img alt="Client" class="h-24 mx-2 object-contain"/>
+        @for (client of this.clients; track $index) {
+          <img [src]="`/api/images/${client.image}`" alt="Client" class="h-24 mx-2 object-contain"/>
+        }
+        @for (client of this.clients; track $index) {
+          <img [src]="`/api/images/${client.image}`" alt="Client" class="h-24 mx-2 object-contain"/>
+        }
+        @for (client of this.clients; track $index) {
+          <img [src]="`/api/images/${client.image}`" alt="Client" class="h-24 mx-2 object-contain"/>
         }
       </div>
     </div>
   } @else if (this.displayType === 'grid') {
+    <div class="mb-12 text-center pb-8 pt-8">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900">
+        Os Nossos Clientes
+      </h1>
+    </div>
     <div class="flex justify-evenly flex-wrap gap-10">
-      @for (img of this.images; track $index) {
+      @for (client of this.clients; track $index) {
         <div class="flex justify-center items-center hover:shadow-2xl transition-shadow duration-300">
-          <img [src]=img alt="Client" class="object-contain h-32 w-full"/>
+          <img [src]="`/api/images/${client.image}`" alt="Client" class="object-contain h-32 w-full"/>
         </div>
       }
       <div class="flex justify-center items-center hover:shadow-2xl transition-shadow duration-300">

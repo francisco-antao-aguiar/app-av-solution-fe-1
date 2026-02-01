@@ -56,9 +56,7 @@ export class CreateClientModal {
     if (this.form.invalid) return;
 
     const payload: ClientPayload = {
-      url: {
-        ...this.form.value,
-      },
+      ...this.form.value,
       image: this.image?.file!,
     };
 

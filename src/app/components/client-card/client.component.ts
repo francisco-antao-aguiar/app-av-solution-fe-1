@@ -2,6 +2,7 @@ import {Component, inject, Input} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {AuthService} from '../../services/auth.service';
 import {CreateClient} from './util/app-create-project-button/app-create-project-button.component';
+import {ClientModel} from './util/app-create-project-button/client-payload.model';
 
 @Component({
   selector: 'clients-component',
@@ -10,7 +11,7 @@ import {CreateClient} from './util/app-create-project-button/app-create-project-
   styleUrl: './client.component.css',
 })
 export class ClientComponent {
-  @Input() images!: string[];
+  @Input() clients!: ClientModel[];
   @Input() displayType: 'banner' | 'grid' = 'grid';
   protected authService = inject(AuthService);
 }

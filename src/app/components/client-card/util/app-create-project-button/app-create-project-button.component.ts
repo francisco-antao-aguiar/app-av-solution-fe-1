@@ -1,4 +1,4 @@
-import {Component, signal} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import {switchMap} from 'rxjs';
@@ -10,6 +10,7 @@ import {ClientModel, ClientPayload} from './client-payload.model';
   imports: [CommonModule, CreateClientModal],
   templateUrl: './app-create-project-button.component.html',
   styleUrl: './app-create-project-button.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreateClient {
   protected showModal: boolean = false;
@@ -17,7 +18,8 @@ export class CreateClient {
   protected readonly error = signal<string | null>(null);
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private cdr: ChangeDetectorRef
   ) {
   }
 
@@ -27,6 +29,8 @@ export class CreateClient {
 
   protected closeModal() {
     this.showModal = false;
+    this.cdr.markForCheck();
+    this.cdr.detectChanges();
   }
 
   protected createClient(clientPayload: ClientPayload): void {

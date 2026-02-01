@@ -9,6 +9,7 @@ import {ProjectsPreviewComponent} from '../../components/projects/projects-previ
 import {HttpClient} from '@angular/common/http';
 import {ProjectsModel} from '../projects/projects.model';
 import {ClientComponent} from '../../components/client-card/client.component';
+import {ClientModel} from '../../components/client-card/util/app-create-project-button/client-payload.model';
 
 @Component({
   selector: 'app-home',
@@ -22,12 +23,14 @@ export class HomePage implements OnInit {
   protected readonly error = signal<string | null>(null);
   protected readonly homeData: any = signal<string | null>(null);
   protected readonly hasLabels = signal(false);
+  protected readonly clients = signal<ClientModel[] | null>(null);
   constructor(private http: HttpClient) {
     this.fetchLabels();
   }
 
   ngOnInit() {
     this.fetchProjectHome();
+    this.fetchClients();
   }
 
   protected fetchLabels(): void {
@@ -36,6 +39,14 @@ export class HomePage implements OnInit {
       next: (data) => {
         this.hasLabels.set(true);
         this.homeData.set(data);
+      },
+    });
+  }
+
+  protected fetchClients(): void {
+    this.http.get<ClientModel[]>(`/api/client`).subscribe({
+      next: (data) => {
+        this.clients.set(data);
       },
     });
   }
