@@ -1,7 +1,7 @@
 .banner-track {
   display: flex;
   width: max-content; /* makes the track shrink to fit images */
-  animation: scroll 25s linear infinite;
+  animation: scroll 20s linear infinite;
 }
 
 @keyframes scroll {
