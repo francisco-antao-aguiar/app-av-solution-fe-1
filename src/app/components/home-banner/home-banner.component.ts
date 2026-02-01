@@ -10,5 +10,10 @@ import {HomeBannerModel} from '../../pages/home/home.model';
   styleUrl: './home-banner.component.css',
 })
 export class HomeBannerComponent {
-  @Input() data!: HomeBannerModel;
+  @Input() data!: any;
+
+  ngOnInit() {
+    console.log(this.data);
+  }
+
 }

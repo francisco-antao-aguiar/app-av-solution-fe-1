@@ -10,14 +10,16 @@ import {ProjectsPreviewComponent} from '../../components/projects/projects-previ
 import {ContactUsComponent} from '../../components/contact-us/contact-us.component';
 import {HttpClient} from '@angular/common/http';
 import {ProjectsModel} from '../projects/projects.model';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-home',
-  imports: [HomeBannerComponent, AboutUsComponent, ProjectsPreviewComponent, ServicesComponent, FadeLightToDarkComponent, FadeDarkToLightComponent, FooterComponent, ProjectsPreviewComponent, ProjectsPreviewComponent, ProjectsPreviewComponent, ProjectsPreviewComponent, ContactUsComponent],
+  imports: [HomeBannerComponent, AboutUsComponent, ProjectsPreviewComponent, ServicesComponent, FadeLightToDarkComponent, FadeDarkToLightComponent, FooterComponent, ProjectsPreviewComponent, ProjectsPreviewComponent, ProjectsPreviewComponent, ProjectsPreviewComponent],
   templateUrl: './home.page.html',
   styleUrl: './home.page.css',
 })
 export class HomePage implements OnInit {
+  /*
   protected homeData: HomeModel = {
     homeBanner: {
       image: "assets/home/banner.png",
@@ -46,7 +48,7 @@ export class HomePage implements OnInit {
     services: {
       title: "Nossos Serviços",
       subtitle: "Soluções completas em engenharia e construção",
-      cards: [
+      card: [
         {
           id: "1",
           icon: "fa-building",
@@ -169,16 +171,28 @@ export class HomePage implements OnInit {
       email: "geral@grupomirandas.pt",
       location: "Portugal",
     },
-  };
+  };*/
   protected readonly response = signal<ProjectsModel | null>(null);
   protected readonly isLoading = signal(false);
   protected readonly error = signal<string | null>(null);
-
+  protected readonly homeData: any = signal<string | null>(null);
+  protected readonly hasLabels = signal(false);
   constructor(private http: HttpClient) {
+    this.fetchLabels();
   }
 
   ngOnInit() {
     this.fetchProjectHome();
+  }
+
+  protected fetchLabels(): void {
+    this.isLoading.set(true);
+    this.http.get<any>(`/api/labels`).subscribe({
+      next: (data) => {
+        this.hasLabels.set(true);
+        this.homeData.set(data);
+      },
+    });
   }
 
   protected fetchProjectHome(): void {

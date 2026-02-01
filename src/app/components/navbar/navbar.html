@@ -9,10 +9,10 @@
       <!-- Navigation Links -->
       <div class="hidden md:block">
         <div class="ml-10 flex items-baseline space-x-8">
-          <a routerLink="/home" routerLinkActive="active-underline" class="px-3 py-2 text-sm  hover-bg transition-colors">Home</a>
+          <a routerLink="/home" routerLinkActive="active-underline" class="px-3 py-2 text-sm  hover-bg transition-colors">Pagina Inicial</a>
           <a class="px-3 py-2 text-sm  hover-bg transition-colors" routerLink="/projects"
              routerLinkActive="active-underline">Projetos</a>
-          <a routerLink="/about-us" routerLinkActive="active-underline" class="px-3 py-2 text-sm  hover-bg transition-colors">About Us</a>
+          <a routerLink="/about-us" routerLinkActive="active-underline" class="px-3 py-2 text-sm  hover-bg transition-colors">Clientes</a>
           @if (authService.isLoggedIn()) {
             <a routerLink="/test" routerLinkActive="active-underline" class="px-3 py-2 text-sm  hover-bg transition-colors">Test Admin</a>
           }
@@ -49,11 +49,11 @@
       <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
         <a (click)="closeMobileMenu()"
            class="block px-3 py-3 text-base  hover-bg rounded-md transition-all duration-200" routerLink="/home"
-           routerLinkActive="active-underline">HomePage</a>
+           routerLinkActive="active-underline">Pagina Inicial</a>
         <a (click)="closeMobileMenu()"
            class="block px-3 py-3 text-base  hover-bg rounded-md transition-all duration-200" routerLink="/projects"
            routerLinkActive="active-underline">Projetos</a>
-        <a (click)="closeMobileMenu()" routerLink="/about-us" routerLinkActive="active-underline" class="block px-3 py-3 text-base hover-bg rounded-md transition-all duration-200">About Us</a>
+        <a (click)="closeMobileMenu()" routerLink="/about-us" routerLinkActive="active-underline" class="block px-3 py-3 text-base hover-bg rounded-md transition-all duration-200">Clientes</a>
         @if (authService.isLoggedIn()) {
           <a (click)="closeMobileMenu()" routerLink="/test" routerLinkActive="active-underline" class="block px-3 py-3 text-base  hover-bg rounded-md transition-all duration-200">Test Admin</a>
         }
