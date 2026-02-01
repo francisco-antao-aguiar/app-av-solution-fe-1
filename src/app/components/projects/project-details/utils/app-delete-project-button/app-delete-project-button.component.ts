@@ -1,7 +1,7 @@
 import {Component, Input, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
-import {ProjectsService} from '../services/projects.service';
+import {ProjectsService} from '../../../utils2/services/projects.service';
 
 @Component({
   selector: 'app-delete-button',

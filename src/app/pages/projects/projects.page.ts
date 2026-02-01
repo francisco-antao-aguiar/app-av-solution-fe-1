@@ -35,12 +35,12 @@ export class ProjectsPage {
 
     this.http.get<ProjectsModel>(`/api/project`).subscribe({
       next: (data) => {
-        data.project = data.project.map(project => ({
-          ...project,
-          imageIds: project.imageIds?.map(
-            imageId => `/api/images/${imageId}`
-          )
-        }));
+        // data.project = data.project.map(project => ({
+        //   ...project,
+        //   imageIds: project.imageIds?.map(
+        //     imageId => `/api/images/${imageId}`
+        //   )
+        // }));
 
         this.projectsService.setItems(data);
         this.isLoading.set(false);

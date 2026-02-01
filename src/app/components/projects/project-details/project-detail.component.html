@@ -20,7 +20,7 @@
         <img
           [class.opacity-0]="currentImageIndex !== i"
           [class.opacity-100]="currentImageIndex === i"
-          [src]="image"
+          [src]="`/api/images/${image}`"
           alt=""
           class="rounded-2xl object-contain object-center transition-opacity duration-500 ease-in-out max-w-full max-h-full"
         />
@@ -30,7 +30,7 @@
     <!-- Previous Button -->
     <button
       (click)="prev()"
-      class="cursor-pointer absolute shadow left-3 top-1/2 -translate-y-1/2 h-8 w-8 sm:h-11 sm:w-11 rounded-full bg-white/60 sm:bg-white/80 backdrop-blur border border-green-200 text-green-700 shadow hover:bg-white transition"
+      class="cursor-pointer absolute shadow left-3 top-1/2 -translate-y-1/2 h-8 w-8 sm:h-11 sm:w-11 rounded-full bg-white/60 sm:bg-white/80 backdrop-blur border border-green-200 text-green-700 hover:bg-white transition"
     >
       <i class="fa-solid fa-chevron-left"></i>
     </button>
@@ -38,7 +38,7 @@
     <!-- Next Button -->
     <button
       (click)="next()"
-      class="cursor-pointer absolute shadow right-3 top-1/2 -translate-y-1/2 h-8 w-8 sm:h-11 sm:w-11 rounded-full bg-white/60 sm:bg-white/80 backdrop-blur border border-green-200 text-green-700 shadow hover:bg-white transition"
+      class="cursor-pointer absolute shadow right-3 top-1/2 -translate-y-1/2 h-8 w-8 sm:h-11 sm:w-11 rounded-full bg-white/60 sm:bg-white/80 backdrop-blur border border-green-200 text-green-700 hover:bg-white transition"
     >
       <i class="fa-solid fa-chevron-right"></i>
     </button>
@@ -96,7 +96,7 @@
     @for (image of data.imageIds; track $index; let i = $index) {
       <img
         (click)="openModal(i)"
-        [src]="image"
+        [src]="`/api/images/${image}`"
         alt=""
         class="w-full shadow h-24 sm:h-32 object-cover rounded-lg cursor-pointer hover:opacity-80 transition"
       />
@@ -149,7 +149,7 @@
             (click)="selectModalImage(i)"
             [class.border-green-500]="i === selectedModalImageIndex"
             [class.border-transparent]="i !== selectedModalImageIndex"
-            [src]="image"
+            [src]="`/api/images/${image}`"
             alt=""
             class="
             shrink-0

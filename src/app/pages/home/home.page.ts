@@ -187,11 +187,11 @@ export class HomePage implements OnInit {
 
     this.http.get<ProjectsModel>(`/api/project`).subscribe({
       next: (data) => {
-        data.project = data.project.map(
-          project => {
-            return {...project, imageIds: project.imageIds?.map(imageId => `/api/images/${imageId}`)}
-          }
-        );
+        // data.project = data.project.map(
+        //   project => {
+        //     return {...project, imageIds: project.imageIds?.map(imageId => `/api/images/${imageId}`)}
+        //   }
+        // );
         this.response.set(data);
         this.isLoading.set(false);
       },

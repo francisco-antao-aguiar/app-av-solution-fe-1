@@ -34,7 +34,7 @@ export class ProjectDetailPage implements OnInit {
 
     this.http.get<ProjectsCardModel>(`/api/project/${id}`).subscribe({
       next: (data) => {
-        data.imageIds = data.imageIds?.map(imageId => `/api/images/${imageId}`)
+        // data.imageIds = data.imageIds?.map(imageId => `/api/images/${imageId}`)
         this.response.set(data);
         this.isLoading.set(false);
       },

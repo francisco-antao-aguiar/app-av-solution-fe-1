@@ -3,7 +3,7 @@
   <img
     alt="{{ data.title }}"
     class="h-64 w-full object-cover"
-    src="{{ data.imageIds.at(0) }}"
+    src="{{ `/api/images/${data.imageIds.at(0)}` }}"
   />
 
   <!-- Gradient overlay -->

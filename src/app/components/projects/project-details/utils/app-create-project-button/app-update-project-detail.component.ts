@@ -1,17 +1,19 @@
 import {Component, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
-import {ProjectsService} from '../services/projects.service';
-import {ProjectsCardModel} from '../../../pages/projects/projects.model';
 import {forkJoin, map, of, switchMap} from 'rxjs';
-import {CreateProjectCardModal} from './modal/app-create-project-card-modal.component';
-import {ProjectPayload} from './project-payload.model';
+import {ProjectPayload} from './project-detail-payload.model';
+import {ProjectsCardModel} from '../../../../../pages/projects/projects.model';
+import {ProjectsService} from '../../../../utils/services/projects.service';
+import {
+  CreateProjectCardModal
+} from '../../../utils/app-create-project-button/modal/app-create-project-card-modal.component';
 
 @Component({
-  selector: 'app-create-project',
+  selector: 'app-update-project-detail',
   imports: [CommonModule, CreateProjectCardModal],
-  templateUrl: './app-create-project-button.component.html',
-  styleUrl: './app-create-project-button.component.css',
+  templateUrl: './app-update-project-detail.component.html',
+  styleUrl: './app-update-project-detail.component.css',
 })
 export class CreateProjectCard {
   protected showModal: boolean = false;
@@ -65,10 +67,8 @@ export class CreateProjectCard {
       })
     ).subscribe({
       next: (projectCreated) => {
-        const pathImagesIds = projectCreated.imageIds.map(imageId => `/api/images/${imageId}`)
         this.projectsService.addItem({
           ...projectCreated,
-          imageIds: pathImagesIds
         });
         this.isLoading.set(false);
         this.showModal = false;

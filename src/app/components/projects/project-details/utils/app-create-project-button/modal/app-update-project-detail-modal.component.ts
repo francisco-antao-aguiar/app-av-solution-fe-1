@@ -1,7 +1,7 @@
 import {CommonModule} from '@angular/common';
 import {Component, EventEmitter, Output} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {ProjectPayload} from '../project-payload.model';
+import {ProjectPayload} from '../project-detail-payload.model';
 
 interface ImagePreview {
   file: File;
@@ -9,8 +9,8 @@ interface ImagePreview {
 }
 
 @Component({
-  selector: 'app-create-project-modal',
-  templateUrl: './app-create-project-card-modal.component.html',
+  selector: 'app-update-project-detail-modal',
+  templateUrl: './app-update-project-detail-modal.component.html',
   imports: [CommonModule, ReactiveFormsModule ],
 })
 export class CreateProjectCardModal {
