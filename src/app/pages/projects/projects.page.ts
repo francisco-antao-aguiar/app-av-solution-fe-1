@@ -42,7 +42,7 @@ export class ProjectsPage {
         //   )
         // }));
 
-        this.projectsService.setItems(data);
+        this.projectsService.setProjects(data);
         this.isLoading.set(false);
       },
       error: (err) => {

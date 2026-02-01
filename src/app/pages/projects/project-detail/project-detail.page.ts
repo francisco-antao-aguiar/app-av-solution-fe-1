@@ -42,7 +42,7 @@ export class ProjectDetailPage {
     this.http.get<ProjectsCardModel>(`/api/project/${id}`).subscribe({
       next: (data) => {
         // data.imageIds = data.imageIds?.map(imageId => `/api/images/${imageId}`)
-        this.projectsService.setItems({
+        this.projectsService.setProjects({
           title: "",
           subtitle: "",
           project: [data],

@@ -11,7 +11,7 @@ export class ProjectsService {
   });
   projects$ = this.projectsSubject.asObservable();
 
-  setItems(items: ProjectsModel) {
+  setProjects(items: ProjectsModel) {
     this.projectsSubject.next(items);
   }
 
@@ -21,7 +21,7 @@ export class ProjectsService {
     this.projectsSubject.next({...current, project: updatedProjects});
   }
 
-  addItem(newProject: ProjectsCardModel) {
+  addProject(newProject: ProjectsCardModel) {
     const current = this.projectsSubject.value;
     const updatedProjects = [...current.project, newProject];
     this.projectsSubject.next({...current, project: updatedProjects});
@@ -43,5 +43,15 @@ export class ProjectsService {
       ...current,
       project: updatedProjects
     });
+  }
+
+  updateProjects(newProject: ProjectsCardModel) {
+    const current = this.projectsSubject.value;
+
+    const updatedProjects = current.project.map(proj =>
+      proj.id === newProject.id ? newProject : proj
+    );
+
+    this.projectsSubject.next({...current, project: updatedProjects});
   }
 }
