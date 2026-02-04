@@ -5,6 +5,7 @@
 
 :root {
   --primary-color: #87C33D; /* blue-600 #87C33D a4ca3a*/
+  --primary-color-rga: 135 195 61; /* blue-600 #87C33D a4ca3a*/
   --secondary-color: #64748b; /* slate-500 */
   --accent-color: #87C33D; /* amber-500 */
   /*--background-color: #ed07f5; !* white *!*/

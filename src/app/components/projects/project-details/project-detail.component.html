@@ -1,5 +1,5 @@
 <div class="max-w-7xl mx-auto px-4 py-16 space-y-12">
-  
+
   <!-- Header -->
   <div class="relative text-center space-y-2">
     <h1 class="text-4xl md:text-5xl font-semibold text-900">
@@ -60,7 +60,7 @@
       @if(data.totalArea && data.totalArea != 0) {
       <div
         class="rounded-3xl  border border-green-100 p-4 flex flex-col items-center gap-2 text-center"
-        style="background: var(--primary-color)"
+        style="background: rgb(var(--primary-color-rga) / 0.3)"
       >
         <i class="fa-solid fa-ruler-combined text-green-700 text-xl"></i>
         <p class="text-xs text-green-600">Área total</p>
@@ -69,7 +69,8 @@
       }
       @if(data.duration && data.durationUnit && data.duration != 0 && data.durationUnit != '') {
         <div
-          class="rounded-3xl bg-green-50/70 border border-green-100 p-4 flex flex-col items-center gap-2 text-center"
+          class="rounded-3xl border-green-100 p-4 flex flex-col items-center gap-2 text-center"
+          style="background: rgb(var(--primary-color-rga) / 0.3)"
         >
           <i class="fa-solid fa-clock text-green-700 text-xl"></i>
           <p class="text-xs text-green-600">Duração</p>
@@ -78,7 +79,8 @@
       }
       @if(data.location && data.location != '') {
         <div
-          class="rounded-3xl bg-green-50/70 border border-green-100 p-4 flex flex-col items-center gap-2 text-center"
+          class="rounded-3xl border-green-100 p-4 flex flex-col items-center gap-2 text-center"
+          style="background: rgb(var(--primary-color-rga) / 0.3)"
         >
           <i class="fa-solid fa-location-dot text-green-700 text-xl"></i>
           <p class="text-xs text-green-600">Localização</p>
@@ -87,15 +89,16 @@
       }
       @if(data.year && data.year != 0) {
         <div
-          class="rounded-3xl bg-green-50/70 border border-green-100 p-4 flex flex-col items-center gap-2 text-center"
+          class="rounded-3xl border-green-100 p-4 flex flex-col items-center gap-2 text-center"
+          style="background: rgb(var(--primary-color-rga) / 0.3)"
         >
           <i class="fa-solid fa-calendar text-green-700 text-xl"></i>
           <p class="text-xs text-green-600">Ano</p>
           <p class="font-medium text-green-900 text-sm">{{ data.year }}</p>
-        </div> 
+        </div>
       }
     </div>
-  
+
   </div>
   @if (authService.isLoggedIn()) {
     <div class="flex justify-center pointer-events-auto">
