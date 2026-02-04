@@ -59,40 +59,40 @@
     <div class="grid grid-cols-2 gap-4 py-4 lg:w-2/5">
       @if(data.totalArea && data.totalArea != 0) {
       <div
-        class="rounded-3xl  border border-green-100 p-4 flex flex-col items-center gap-2 text-center"
-        style="background: rgb(var(--primary-color-rga) / 0.3)"
+        class="rounded-3xl  p-4 flex flex-col items-center gap-2 text-center"
+        style="background: rgb(var(--primary-color-rga) / 0.25); color: var(--primary-color)"
       >
-        <i class="fa-solid fa-ruler-combined text-green-700 text-xl"></i>
+        <i class="fa-solid fa-ruler-combined text-green-600 text-xl"></i>
         <p class="text-xs text-green-600">Área total</p>
         <p class="font-medium text-green-900 text-sm">{{ data.totalArea }} m<sup>2</sup></p>
       </div>
       }
       @if(data.duration && data.durationUnit && data.duration != 0 && data.durationUnit != '') {
         <div
-          class="rounded-3xl border-green-100 p-4 flex flex-col items-center gap-2 text-center"
-          style="background: rgb(var(--primary-color-rga) / 0.3)"
+          class="rounded-3xl p-4 flex flex-col items-center gap-2 text-center"
+          style="background: rgb(var(--primary-color-rga) / 0.25); color: var(--primary-color)"
         >
-          <i class="fa-solid fa-clock text-green-700 text-xl"></i>
+          <i class="fa-solid fa-clock text-green-600 text-xl"></i>
           <p class="text-xs text-green-600">Duração</p>
           <p class="font-medium text-green-900 text-sm">{{ data.duration }} {{ data.durationUnit }}</p>
         </div>
       }
       @if(data.location && data.location != '') {
         <div
-          class="rounded-3xl border-green-100 p-4 flex flex-col items-center gap-2 text-center"
-          style="background: rgb(var(--primary-color-rga) / 0.3)"
+          class="rounded-3xl border-green-300 p-4 flex flex-col items-center gap-2 text-center"
+          style="background: rgb(var(--primary-color-rga) / 0.25); color: var(--primary-color)"
         >
-          <i class="fa-solid fa-location-dot text-green-700 text-xl"></i>
+          <i class="fa-solid fa-location-dot text-green-600 text-xl"></i>
           <p class="text-xs text-green-600">Localização</p>
           <p class="font-medium text-green-900 text-sm">{{ data.location }}</p>
         </div>
       }
       @if(data.year && data.year != 0) {
         <div
-          class="rounded-3xl border-green-100 p-4 flex flex-col items-center gap-2 text-center"
-          style="background: rgb(var(--primary-color-rga) / 0.3)"
+          class="rounded-3xl border-green-300 p-4 flex flex-col items-center gap-2 text-center"
+          style="background: rgb(var(--primary-color-rga) / 0.25); color: var(--primary-color)"
         >
-          <i class="fa-solid fa-calendar text-green-700 text-xl"></i>
+          <i class="fa-solid fa-calendar text-green-600 text-xl"></i>
           <p class="text-xs text-green-600">Ano</p>
           <p class="font-medium text-green-900 text-sm">{{ data.year }}</p>
         </div>
