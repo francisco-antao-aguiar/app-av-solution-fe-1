@@ -42,7 +42,7 @@ export class UpdateLabelsButton {
   }
 
   protected update(payload: any): void {
-    if (!this.withImage) {
+    if (!this.withImage || !payload.image) {
       this.isLoading.set(true);
       this.error.set(null);
       this.http.put(`/api/labels`, payload).subscribe({
@@ -74,10 +74,11 @@ export class UpdateLabelsButton {
           })
         )
         .subscribe({
-          next: (client) => {
-            // this.projectsService.addProject(client);
+          next: (response) => {
+            console.log('Project updated successfully', response);
             this.isLoading.set(false);
             this.closeModal();
+            this.labelsUpdatedEvent.emit(payload[this.pageId]);
           },
           error: (err) => {
             console.error(err);

@@ -24,6 +24,7 @@
   --dark-green: green;
 }
 
+
 /* Global background */
 body {
   background-color: var(--background-color);

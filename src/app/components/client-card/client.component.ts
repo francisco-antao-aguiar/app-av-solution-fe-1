@@ -19,4 +19,8 @@ export class ClientComponent {
   openUrl(url: string) {
     window.open(url, '_blank');
   }
+
+  clientsLabels(event: any) {
+    this.clients.push(event);
+  }
 }

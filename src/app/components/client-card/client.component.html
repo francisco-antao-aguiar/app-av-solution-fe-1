@@ -22,13 +22,16 @@
         Os Nossos Clientes
       </h1>
     </div>
-    <div class="flex justify-evenly flex-wrap gap-10">
+    <div class="block md:flex md:justify-evenly md:flex-wrap gap-10">
       @for (client of this.clients; track $index) {
         <div
-          class="relative flex justify-center items-center hover:shadow-2xl transition-shadow duration-300">
-          <img (click)="openUrl(client.url)" [src]="`/api/images/${client.image}`" alt="Client"
-               class="object-contain h-32 w-full"
-               style="cursor: pointer;"/>
+          class="relative flex justify-center items-center mx-auto mb-6 md:mb-0 hover:shadow-2xl transition-shadow duration-300">
+
+          <img
+            (click)="openUrl(client.url)"
+            [src]="`/api/images/${client.image}`"
+            alt="Client"
+            class="object-contain h-32 w-full cursor-pointer"/>
 
           @if (authService.isLoggedIn()) {
             <div class="absolute top-1 right-1 pointer-events-auto">
@@ -39,7 +42,7 @@
       }
       @if (authService.isLoggedIn()) {
         <div class="flex justify-center items-center hover:shadow-2xl transition-shadow duration-300">
-          <app-create-client></app-create-client>
+          <app-create-client (clientsUpdatedEvent)="clientsLabels($event)"></app-create-client>
         </div>
       }
     </div>

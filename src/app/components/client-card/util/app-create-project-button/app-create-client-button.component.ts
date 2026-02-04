@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, signal} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Output, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import {switchMap} from 'rxjs';
@@ -16,6 +16,7 @@ export class CreateClient {
   protected showModal: boolean = false;
   protected readonly isLoading = signal(false);
   protected readonly error = signal<string | null>(null);
+  @Output() clientsUpdatedEvent = new EventEmitter<any>();
 
   constructor(
     private http: HttpClient,
@@ -57,7 +58,7 @@ export class CreateClient {
       )
       .subscribe({
         next: (client) => {
-          // this.projectsService.addProject(client);
+          this.clientsUpdatedEvent.emit(client);
           this.isLoading.set(false);
           this.closeModal();
         },
