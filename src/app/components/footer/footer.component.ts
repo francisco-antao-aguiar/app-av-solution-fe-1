@@ -1,13 +1,20 @@
-import {Component, Input} from '@angular/core';
+import {Component, inject, Input} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ContactsModel} from '../../pages/home/home.model';
+import {UpdateLabelsButton} from "../update-button/update-button.component";
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'footer-component',
-  imports: [CommonModule],
+  imports: [CommonModule, UpdateLabelsButton],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css',
 })
 export class FooterComponent {
-  @Input() data!: ContactsModel;
+  @Input() data!: any;
+  protected pageId: string = 'contacts';
+  protected authService = inject(AuthService);
+
+  updateLabels(event: any) {
+    this.data = event;
+  }
 }

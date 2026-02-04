@@ -1,27 +1,32 @@
-<section class="projects w-full flex justify-center pb-10" id="projects">
-  <!-- Section header -->
-  <div class="w-7xl px-4 py-8">
-    <div class=" text-center mb-12">
-      <h2 class="text-3xl font-bold text-gray-900 md:text-4xl">
-        {{ data.title }}
-      </h2>
-
-      <div class="mx-auto mt-3 max-w-2xl text-sm text-gray-500 md:text-base">
-        {{ data.subtitle }}
-      </div>
-    </div>
-
-    <!-- Projects grid -->
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      @for (project of data.projects | slice:0:6; track project.id) {
-        <project-card-component [data]="project"></project-card-component>
-      }
-    </div>
-    <div class="mt-12 text-center">
-      <a class="project project-btn inline-flex items-center gap-2 rounded-lg  px-6 py-3 text-sm font-semibold text-white shadow-md transition
-              hover:shadow-lg focus:outline-none focus:ring-2  focus:ring-offset-2" routerLink="/projects">
-        Ver todos os projetos
-      </a>
-    </div>
+<div class="max-w-6xl mx-auto px-4 py-16">
+  <!-- Header -->
+  <div class="mb-12 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900">
+      {{ data.title }}
+    </h1>
+   <!--<p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+      {{ data.subtitle }}
+    </p>-->
   </div>
-</section>
+
+  <!-- Projects grid -->
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    @for (project of data.project; track project.id) {
+      <div class="block group relative">
+        <a [routerLink]="['/projects', project.id]" class="block group">
+          <project-card-component [data]="project" class="block"></project-card-component>
+        </a>
+        @if (authService.isLoggedIn()) {
+          <div class="absolute top-1 right-1 pointer-events-auto">
+            <app-delete-button [projectId]="project.id"></app-delete-button>
+          </div>
+        }
+      </div>
+    }
+    @if (authService.isLoggedIn()) {
+      <div class="block group relative">
+        <app-create-project class="block"></app-create-project>
+      </div>
+    }
+  </div>
+</div>

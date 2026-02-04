@@ -1,0 +1,21 @@
+/* ===== MODAL ONLY SCROLLBAR ===== */
+
+.modal-scrollbar {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #66ffffff #0a0a0a; /* thumb | track */
+}
+
+/* Chrome / Safari / Edge */
+.modal-scrollbar::-webkit-scrollbar {
+  height: 10px;
+}
+
+.modal-scrollbar::-webkit-scrollbar-track {
+  background-color: #0a0a0a; /* dark track */
+}
+
+.modal-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #66ffffff; /* white thumb */
+  border-radius: 9999px;
+  border: 2px solid #0a0a0a;
+}

@@ -5,6 +5,7 @@
 
 :root {
   --primary-color: #87C33D; /* blue-600 #87C33D a4ca3a*/
+  --primary-color-rga: 135 195 61; /* blue-600 #87C33D a4ca3a*/
   --secondary-color: #64748b; /* slate-500 */
   --accent-color: #87C33D; /* amber-500 */
   /*--background-color: #ed07f5; !* white *!*/
@@ -21,9 +22,33 @@
   --bg-dark: #dddddd;/*dddddd black */
   --fade-padding:30px;
   --footer-bg: #2C2C2C;
+  --dark-green: green;
 }
+
 
 /* Global background */
 body {
   background-color: var(--background-color);
 }
+
+/* Remove arrows from number inputs */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.floating-label {
+  @apply absolute left-3 top-2 text-xs text-gray-500 transition-all
+  peer-placeholder-shown:top-4
+  peer-placeholder-shown:text-sm
+  peer-placeholder-shown:text-gray-400
+  peer-focus:top-2
+  peer-focus:text-xs
+  peer-focus:text-gray-900;
+}
+

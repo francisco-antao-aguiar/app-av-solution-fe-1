@@ -1,5 +1,14 @@
 <section class="about w-full flex justify-center items-center pt-10" id="about-us">
+
   <div class="max-w-7xl mx-auto px-4 py-8">
+    @if(authService.isLoggedIn()) {
+      <section class="relative py-4 services pt-10" id="services" >
+          <div class="absolute top-0 right-0 size-16 pointer-events-auto">
+            <app-update-labels-button (labelsUpdatedEvent)="updateLabels($event)" [input]="data" [pageId]="pageId"
+                                      [withImage]="true"></app-update-labels-button>
+          </div>
+      </section>
+    }
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
       <!-- LEFT SIDE -->
@@ -7,8 +16,8 @@
         <img
           alt="About us"
           class="w-full h-full object-cover rounded-2xl shadow-2xl"
-          src="{{ data.image }}"
-          style="filter: drop-shadow(0 0 1rem var(--dark-shadow))"
+          src="{{`/api/images/${data.image}`}}"
+          style="filter: drop-shadow(0 0 1rem var(--shadow-hover))"
         />
 
         <!-- Experience Badge -->
@@ -16,7 +25,7 @@
           class="absolute -bottom-4 -right-4 text-white rounded-xl shadow-lg text-center
          px-3 py-4 md:px-6 md:py-8
          text-xl md:text-4xl"
-          style="background: var(--primary-color)"
+          style="background: var(--primary-color); filter: drop-shadow(0 0 1rem var(--shadow-hover))"
         >
           <div class="font-bold pb-1">{{ data.badgeTitle }}</div>
           <div class="font-medium text-sm md:text-base">{{ data.badgeSubtitle }}</div>
@@ -25,7 +34,8 @@
 
       <!-- RIGHT SIDE -->
       <div>
-        <h2 class="text-4xl md:text-5xl font-bold mb-12">
+
+      <h2 class="text-4xl md:text-5xl font-bold mb-12">
           {{ data.title }}
         </h2>
 

@@ -1,0 +1,7 @@
+<div (click)="openModal()" class="iconbtn group w-8 h-8 rounded-full bg-300 flex items-center justify-center hover:bg-red-600 transition-colors cursor-pointer z-50">
+  <i class="fa-solid fa-pen fa-1x text-white hover:scale-110 transition-transform"></i>
+</div>
+@if (showModal) {
+  <app-update-labels-modal (close)="closeModal()" (updateLabelFunc)="update($event)" [labels]="input" [pageId]="pageId"
+                           [withImage]="withImage"></app-update-labels-modal>
+}

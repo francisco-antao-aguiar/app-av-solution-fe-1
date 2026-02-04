@@ -3,13 +3,19 @@
   <div class="image-background absolute max-w-full inset-0 -z-10">
     <img class="absolute inset-0 w-full h-full object-cover"
          alt="HomePage image"
-         src="{{data.image}}">
+         src="{{`/api/images/${data.image}`}}">
     <!-- Overlay -->
     <div class="image-gradient absolute inset-0"></div>
   </div>
-
-
   <div class="hero-gradient text-white py-20">
+    @if (authService.isLoggedIn()) {
+      <section class="relative py-4 services pt-10" id="services">
+        <div class="absolute top-0 right-0 size-16 pointer-events-auto">
+          <app-update-labels-button (labelsUpdatedEvent)="updateLabels($event)" [input]="data" [pageId]="pageId"
+                                    [withImage]="true"></app-update-labels-button>
+        </div>
+      </section>
+    }
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h1 class="text-4xl md:text-6xl font-bold mb-6" id="hero-title">{{ data.title }}</h1>
       <p class="text-xl md:text-2xl mb-8" id="hero-subtitle">{{ data.subtitle }}</p>

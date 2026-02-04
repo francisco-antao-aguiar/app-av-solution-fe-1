@@ -15,15 +15,23 @@ export const routes: Routes = [
   },
   {
     path: 'projects',
-    loadComponent: () => import('./pages/projects/projects-page.component').then(m => m.ProjectsPage)
+    loadComponent: () => import('./pages/projects/projects.page').then(m => m.ProjectsPage)
   },
   {
     path: 'about-us',
     loadComponent: () => import('./pages/about-us/about-us').then(m => m.AboutUs)
   },
   {
+    path: 'projects/:id',
+    loadComponent: () => import('./pages/projects/project-detail/project-detail.page').then(m => m.ProjectDetailPage),
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  }
+  },
+  {
+    path: '**',
+    redirectTo: 'home'
+  },
 ];

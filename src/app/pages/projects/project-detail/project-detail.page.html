@@ -1,0 +1,10 @@
+@if (isLoading()) {
+  <div>
+  </div>
+} @else if (error()) {
+  <div>
+    Error.
+  </div>
+} @else {
+  <projects-detail-component [data]="projects()!.project.at(0)!"></projects-detail-component>
+}

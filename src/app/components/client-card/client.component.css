@@ -1,0 +1,20 @@
+.banner-track {
+  display: flex;
+  width: max-content; /* makes the track shrink to fit images */
+  animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.shadow:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px var(--shadow-hover);
+  cursor: pointer;
+}

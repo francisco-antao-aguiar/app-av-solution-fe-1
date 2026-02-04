@@ -1,0 +1,211 @@
+<div class="max-w-7xl mx-auto px-4 py-16 space-y-12">
+
+  <!-- Header -->
+  <div class="relative text-center space-y-2">
+    <h1 class="text-4xl md:text-5xl font-semibold text-900">
+      {{ data.title }}
+    </h1>
+    <h2 class="text-lg md:text-xl text-700">
+      {{ data.subtitle }}
+    </h2>
+  </div>
+
+  <div
+    (touchend)="onTouchEnd($event)"
+    (touchmove)="onTouchMove($event)"
+    (touchstart)="onTouchStart($event)"
+    class="relative w-full h-96 sm:h-112 md:h-144 lg:h-160 rounded-3xl overflow-hidden"
+  >
+    @for (image of data.imageIds; track $index; let i = $index) {
+      <div class="absolute inset-0 flex justify-center items-center w-full h-full">
+        <img
+          [class.opacity-0]="currentImageIndex !== i"
+          [class.opacity-100]="currentImageIndex === i"
+          [src]="`/api/images/${image}`"
+          alt=""
+          class="rounded-2xl object-contain object-center transition-opacity duration-500 ease-in-out max-w-full max-h-full"
+        />
+      </div>
+    }
+
+    <!-- Previous Button -->
+    <button
+      (click)="prev()"
+      class="cursor-pointer absolute shadow left-3 top-1/2 -translate-y-1/2 h-8 w-8 sm:h-11 sm:w-11 rounded-full bg-white/60 sm:bg-white/80 backdrop-blur border text-700 hover:bg-white transition"
+      style="border-color: var(--primary-color); color: var(--primary-color);"
+    >
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+    <!-- Next Button -->
+    <button
+      (click)="next()"
+      class="cursor-pointer absolute shadow right-3 top-1/2 -translate-y-1/2 h-8 w-8 sm:h-11 sm:w-11 rounded-full bg-white/60 sm:bg-white/80 backdrop-blur border text-700 hover:bg-white transition"
+      style="border-color: var(--primary-color); color: var(--primary-color);"
+    >
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
+
+
+  <div class="flex flex-col lg:flex-row gap-6">
+    <!-- Project Description -->
+    <div class="bg-white rounded-3xl border p-6 shadow-description lg:w-3/5"
+         style="border-color: var(--primary-color)">
+      <h3 class="text-2xl font-semibold text-green-900 mb-4">Sobre o Projeto</h3>
+      <p class="text-green-700 leading-relaxed">
+        {{ data.description }}
+      </p>
+    </div>
+
+    <!-- Information Cards -->
+    <div class="grid grid-cols-2 gap-4 py-4 lg:w-2/5">
+      @if(data.totalArea && data.totalArea != 0) {
+      <div
+        class="rounded-3xl  p-4 flex flex-col items-center gap-2 text-center"
+        style="background: rgb(var(--primary-color-rga) / 0.25); color: var(--primary-color)"
+      >
+        <i class="fa-solid fa-ruler-combined text-green-600 text-xl"></i>
+        <p class="text-xs text-green-600">Área total</p>
+        <p class="font-medium text-green-900 text-sm">{{ data.totalArea }} m<sup>2</sup></p>
+      </div>
+      }
+      @if(data.duration && data.durationUnit && data.duration != 0 && data.durationUnit != '') {
+        <div
+          class="rounded-3xl p-4 flex flex-col items-center gap-2 text-center"
+          style="background: rgb(var(--primary-color-rga) / 0.25); color: var(--primary-color)"
+        >
+          <i class="fa-solid fa-clock text-green-600 text-xl"></i>
+          <p class="text-xs text-green-600">Duração</p>
+          <p class="font-medium text-green-900 text-sm">{{ data.duration }} {{ data.durationUnit }}</p>
+        </div>
+      }
+      @if(data.location && data.location != '') {
+        <div
+          class="rounded-3xl border-green-300 p-4 flex flex-col items-center gap-2 text-center"
+          style="background: rgb(var(--primary-color-rga) / 0.25); color: var(--primary-color)"
+        >
+          <i class="fa-solid fa-location-dot text-green-600 text-xl"></i>
+          <p class="text-xs text-green-600">Localização</p>
+          <p class="font-medium text-green-900 text-sm">{{ data.location }}</p>
+        </div>
+      }
+      @if(data.year && data.year != 0) {
+        <div
+          class="rounded-3xl border-green-300 p-4 flex flex-col items-center gap-2 text-center"
+          style="background: rgb(var(--primary-color-rga) / 0.25); color: var(--primary-color)"
+        >
+          <i class="fa-solid fa-calendar text-green-600 text-xl"></i>
+          <p class="text-xs text-green-600">Ano</p>
+          <p class="font-medium text-green-900 text-sm">{{ data.year }}</p>
+        </div>
+      }
+    </div>
+
+  </div>
+  @if (authService.isLoggedIn()) {
+    <div class="flex justify-center pointer-events-auto">
+      <app-update-project-detail [projectCard]="data"></app-update-project-detail>
+    </div>
+  }
+
+  <!-- Image Thumbnails -->
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-4">
+    @for (image of data.imageIds; track $index; let i = $index) {
+      <div class="relative">
+        <img
+          (click)="openModal(i)"
+          [src]="`/api/images/${image}`"
+          alt=""
+          class="w-full shadow h-24 sm:h-32 object-cover rounded-lg cursor-pointer hover:opacity-80 transition"
+        />
+
+        @if (authService.isLoggedIn()) {
+          <div class="absolute top-1 right-1">
+            <app-delete-detail-image-button [imageId]="image"></app-delete-detail-image-button>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Modal Overlay -->
+  <div
+    *ngIf="isModalOpen"
+    class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/70 p-4"
+    (click)="closeModal()"
+  >
+    <!-- Close Button -->
+    <button
+      (click)="closeModal(); $event.stopPropagation()"
+      class="cursor-pointer absolute top-4 right-4 w-10 h-10 rounded-full bg-white/80 text-green-700 hover:bg-white transition shadow-lg z-50 flex items-center justify-center"
+    >
+      <i class="fa-solid fa-xmark text-lg"></i>
+    </button>
+
+    <!-- Main Image -->
+    <div
+      (touchend)="onModalTouchEnd()"
+      (touchmove)="onTouchMove($event)"
+      (touchstart)="onTouchStart($event)"
+      (click)="$event.stopPropagation()"
+      class="relative max-w-[80vw] mb-24 flex items-center justify-center"
+    >
+      <img
+        [src]="`/api/images/${data.imageIds[selectedModalImageIndex]}`"
+        alt=""
+        class="max-w-full max-h-[calc(80vh-6rem)] object-contain rounded-xl shadow-lg"
+      />
+    </div>
+
+    <!-- Thumbnail Scroll -->
+    <div
+      (click)="$event.stopPropagation()"
+      class="fixed bottom-0 left-0 w-full z-50 flex justify-center bg-black/40 backdrop-blur-md always-scrollbar"
+    >
+      <div
+        #modalThumbsContainer
+        class="flex gap-5 overflow-x-auto px-8 py-5 w-full max-w-[98vw] xl:max-w-375 modal-thumb-scroll"
+        style="padding-bottom: 16px;"
+      >
+        @for (image of data.imageIds; track $index; let i = $index) {
+          <img
+            #thumbnail
+            (click)="selectModalImage(i)"
+            [class.border-green-500]="i === selectedModalImageIndex"
+            [class.border-transparent]="i !== selectedModalImageIndex"
+            [src]="`/api/images/${image}`"
+            alt=""
+            class="
+            shrink-0
+            w-32 h-24
+            lg:w-36 lg:h-26
+            object-cover
+            rounded-xl
+            cursor-pointer
+            border-2
+            transition
+          "
+          />
+        }
+        <!-- Previous Button -->
+        <button
+          (click)="prevModalImage(); $event.stopPropagation()"
+          class="cursor-pointer absolute left-4 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full
+         bg-white/80 text-green-700 shadow hover:bg-white transition z-50"
+        >
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <!-- Next Button -->
+        <button
+          (click)="nextModalImage(); $event.stopPropagation()"
+          class="cursor-pointer absolute right-4 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full
+         bg-white/80 text-green-700 shadow hover:bg-white transition z-50"
+        >
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

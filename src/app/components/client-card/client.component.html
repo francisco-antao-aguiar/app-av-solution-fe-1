@@ -1,0 +1,51 @@
+<div class="bg-white w-full pt-4 pb-4">
+  @if (this.displayType === 'banner') {
+    <div class="relative w-full h-24 overflow-hidden">
+      <div class="absolute flex whitespace-nowrap banner-track">
+        @for (client of this.clients; track $index) {
+          <img [src]="`/api/images/${client.image}`" alt="Client" class="h-24 mx-2 object-contain"/>
+        }
+        @for (client of this.clients; track $index) {
+          <img [src]="`/api/images/${client.image}`" alt="Client" class="h-24 mx-2 object-contain"/>
+        }
+        @for (client of this.clients; track $index) {
+          <img [src]="`/api/images/${client.image}`" alt="Client" class="h-24 mx-2 object-contain"/>
+        }
+        @for (client of this.clients; track $index) {
+          <img [src]="`/api/images/${client.image}`" alt="Client" class="h-24 mx-2 object-contain"/>
+        }
+      </div>
+    </div>
+  } @else if (this.displayType === 'grid') {
+    <div class="mb-12 text-center pb-8 pt-8">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900">
+        Os Nossos Clientes
+      </h1>
+    </div>
+    <div class="block md:flex md:justify-evenly md:flex-wrap gap-10">
+      @for (client of this.clients; track $index) {
+        <div
+          class="relative flex justify-center items-center mx-auto mb-6 md:mb-0 shadow transition-shadow duration-300">
+
+          <img
+            (click)="openUrl(client.url)"
+            [src]="`/api/images/${client.image}`"
+            alt="Client"
+            class="object-contain h-32 w-full cursor-pointer"/>
+
+          @if (authService.isLoggedIn()) {
+            <div class="absolute top-1 right-1 pointer-events-auto">
+              <app-delete-client-button (clientsDeleteEvent)="clientsDelete($event)"
+                                        [clientId]="client.id!"></app-delete-client-button>
+            </div>
+          }
+        </div>
+      }
+      @if (authService.isLoggedIn()) {
+        <div class="flex justify-center items-center shadow transition-shadow duration-300">
+          <app-create-client (clientsUpdatedEvent)="clientsUpdate($event)"></app-create-client>
+        </div>
+      }
+    </div>
+  }
+</div>

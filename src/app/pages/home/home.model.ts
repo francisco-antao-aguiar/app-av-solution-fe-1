@@ -1,3 +1,5 @@
+import {ProjectsModel} from '../projects/projects.model';
+
 export type HomeModel = {
   homeBanner: HomeBannerModel,
   aboutUs: AboutUsModel,
@@ -42,21 +44,6 @@ export type ServicesCardModel = {
   description: string,
 }
 
-export type ProjectsModel = {
-  title: string,
-  subtitle: string,
-  projects: ProjectsCardModel[]
-}
-
-export type ProjectsCardModel = {
-  id: string,
-  image: string,
-  title: string,
-  subtitle: string,
-  location: string,
-  year: number,
-}
-
 export type ContactUsModel = {
   title: string,
   subtitle: string,
@@ -67,4 +54,5 @@ export type ContactsModel = {
   telephone: string,
   email: string,
   location: string,
+  subtitle: string,
 }
