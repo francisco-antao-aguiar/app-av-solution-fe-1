@@ -17,7 +17,7 @@
           alt="About us"
           class="w-full h-full object-cover rounded-2xl shadow-2xl"
           src="{{`/api/images/${data.image}`}}"
-          style="filter: drop-shadow(0 0 1rem var(--dark-shadow))"
+          style="filter: drop-shadow(0 0 1rem var(--shadow-hover))"
         />
 
         <!-- Experience Badge -->
@@ -25,7 +25,7 @@
           class="absolute -bottom-4 -right-4 text-white rounded-xl shadow-lg text-center
          px-3 py-4 md:px-6 md:py-8
          text-xl md:text-4xl"
-          style="background: var(--primary-color)"
+          style="background: var(--primary-color); filter: drop-shadow(0 0 1rem var(--shadow-hover))"
         >
           <div class="font-bold pb-1">{{ data.badgeTitle }}</div>
           <div class="font-medium text-sm md:text-base">{{ data.badgeSubtitle }}</div>

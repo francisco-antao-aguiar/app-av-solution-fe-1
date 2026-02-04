@@ -25,7 +25,7 @@
     <div class="block md:flex md:justify-evenly md:flex-wrap gap-10">
       @for (client of this.clients; track $index) {
         <div
-          class="relative flex justify-center items-center mx-auto mb-6 md:mb-0 hover:shadow-2xl transition-shadow duration-300">
+          class="relative flex justify-center items-center mx-auto mb-6 md:mb-0 shadow transition-shadow duration-300">
 
           <img
             (click)="openUrl(client.url)"
@@ -42,7 +42,7 @@
         </div>
       }
       @if (authService.isLoggedIn()) {
-        <div class="flex justify-center items-center hover:shadow-2xl transition-shadow duration-300">
+        <div class="flex justify-center items-center shadow transition-shadow duration-300">
           <app-create-client (clientsUpdatedEvent)="clientsUpdate($event)"></app-create-client>
         </div>
       }
