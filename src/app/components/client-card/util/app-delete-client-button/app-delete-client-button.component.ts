@@ -1,4 +1,4 @@
-import {Component, Input, signal} from '@angular/core';
+import {Component, EventEmitter, Input, Output, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 
@@ -13,6 +13,7 @@ export class DeleteClientButton {
   showConfirm = false;
   protected readonly isLoading = signal(false);
   protected readonly error = signal<string | null>(null);
+  @Output() clientsDeleteEvent = new EventEmitter<any>();
 
   constructor(
     private http: HttpClient
@@ -42,6 +43,7 @@ export class DeleteClientButton {
       next: () => {
         // update service
         // this.projectsService.deleteItem(this.clientId);
+        this.clientsDeleteEvent.emit(this.clientId);
         this.isLoading.set(false);
       },
       error: (err) => {

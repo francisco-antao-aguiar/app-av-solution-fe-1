@@ -20,7 +20,11 @@ export class ClientComponent {
     window.open(url, '_blank');
   }
 
-  clientsLabels(event: any) {
+  clientsUpdate(event: any) {
     this.clients.push(event);
+  }
+
+  clientsDelete(event: any) {
+    this.clients = this.clients.filter(value => value.id != event);
   }
 }

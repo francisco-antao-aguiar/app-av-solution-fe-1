@@ -1,9 +1,3 @@
-@if (isLoading()) {
-  <div>Loading project details...</div>
-} @else if (error()) {
-  <div>Error.</div>
-} @else if (projects()) {
+@if (projects()) {
   <projects-component [data]="projects()!"></projects-component>
-} @else {
-  <div>No project found.</div>
 }
