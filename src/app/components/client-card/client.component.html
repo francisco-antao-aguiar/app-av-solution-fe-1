@@ -35,14 +35,15 @@
 
           @if (authService.isLoggedIn()) {
             <div class="absolute top-1 right-1 pointer-events-auto">
-              <app-delete-client-button [clientId]="client.id!"></app-delete-client-button>
+              <app-delete-client-button (clientsDeleteEvent)="clientsDelete($event)"
+                                        [clientId]="client.id!"></app-delete-client-button>
             </div>
           }
         </div>
       }
       @if (authService.isLoggedIn()) {
         <div class="flex justify-center items-center shadow transition-shadow duration-300">
-          <app-create-client (clientsUpdatedEvent)="clientsLabels($event)"></app-create-client>
+          <app-create-client (clientsUpdatedEvent)="clientsUpdate($event)"></app-create-client>
         </div>
       }
     </div>
