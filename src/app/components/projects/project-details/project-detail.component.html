@@ -31,7 +31,8 @@
     <!-- Previous Button -->
     <button
       (click)="prev()"
-      class="cursor-pointer absolute shadow left-3 top-1/2 -translate-y-1/2 h-8 w-8 sm:h-11 sm:w-11 rounded-full bg-white/60 sm:bg-white/80 backdrop-blur border border-green-200 ourGreen text-700 hover:bg-white transition"
+      class="cursor-pointer absolute shadow left-3 top-1/2 -translate-y-1/2 h-8 w-8 sm:h-11 sm:w-11 rounded-full bg-white/60 sm:bg-white/80 backdrop-blur border text-700 hover:bg-white transition"
+      style="border-color: var(--primary-color)"
     >
       <i class="fa-solid fa-chevron-left"></i>
     </button>
@@ -39,7 +40,8 @@
     <!-- Next Button -->
     <button
       (click)="next()"
-      class="cursor-pointer absolute shadow right-3 top-1/2 -translate-y-1/2 h-8 w-8 sm:h-11 sm:w-11 rounded-full bg-white/60 sm:bg-white/80 backdrop-blur border border-green-200 ourGreen text-700 hover:bg-white transition"
+      class="cursor-pointer absolute shadow right-3 top-1/2 -translate-y-1/2 h-8 w-8 sm:h-11 sm:w-11 rounded-full bg-white/60 sm:bg-white/80 backdrop-blur border text-700 hover:bg-white transition"
+      style="border-color: var(--primary-color)"
     >
       <i class="fa-solid fa-chevron-right"></i>
     </button>
@@ -48,7 +50,8 @@
 
   <div class="flex flex-col lg:flex-row gap-6">
     <!-- Project Description -->
-    <div class="bg-white rounded-3xl border border-green-100 p-6 shadow-sm lg:w-3/5">
+    <div class="bg-white rounded-3xl border p-6 shadow-description lg:w-3/5"
+         style="border-color: var(--primary-color)">
       <h3 class="text-2xl font-semibold text-green-900 mb-4">Sobre o Projeto</h3>
       <p class="text-green-700 leading-relaxed">
         {{ data.description }}

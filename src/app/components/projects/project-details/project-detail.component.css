@@ -7,19 +7,11 @@
 
 .shadow:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px var(--shadow-hover);
+  box-shadow: 0 2px 10px var(--shadow-hover);
   cursor: pointer;
 }
-/*.modal-thumb-scroll::-webkit-scrollbar {*/
-/*  height: 8px;*/
-/*}*/
 
-/*.modal-thumb-scroll::-webkit-scrollbar-track {*/
-/*  background-color: rgba(0, 0, 0, 0.85);*/
-/*  border-radius: 9999px;*/
-/*}*/
-
-/*.modal-thumb-scroll::-webkit-scrollbar-thumb {*/
-/*  background-color: rgba(255, 255, 255, 0.6);*/
-/*  border-radius: 9999px;*/
-/*}*/
+.shadow-description {
+  box-shadow: 0 2px 10px var(--shadow-hover);
+  cursor: pointer;
+}
