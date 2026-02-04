@@ -60,7 +60,6 @@ export class CreateClientModal {
       image: this.image?.file!,
     };
 
-    console.log(payload);
     this.newProjectInfo.emit(payload);
   }
 }

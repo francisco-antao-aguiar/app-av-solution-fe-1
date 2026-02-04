@@ -1,9 +1,11 @@
 <div class="max-w-7xl mx-auto px-4 py-16 space-y-12">
   <!-- Header -->
   <div class="relative text-center space-y-2">
-    <div class="absolute -top-14 right-40 size-16 pointer-events-auto">
-      <app-update-project-detail [projectCard]="data"></app-update-project-detail>
-    </div>
+    @if (authService.isLoggedIn()) {
+      <div class="absolute -top-14 right-40 size-16 pointer-events-auto">
+        <app-update-project-detail [projectCard]="data"></app-update-project-detail>
+      </div>
+    }
     <h1 class="text-4xl md:text-5xl font-semibold text-green-900">
       {{ data.title }}
     </h1>
@@ -105,9 +107,11 @@
           class="w-full shadow h-24 sm:h-32 object-cover rounded-lg cursor-pointer hover:opacity-80 transition"
         />
 
-        <div class="absolute top-1 right-1 z-10">
-          <app-delete-detail-image-button [imageId]="image"></app-delete-detail-image-button>
-        </div>
+        @if (authService.isLoggedIn()) {
+          <div class="absolute top-1 right-1 z-10">
+            <app-delete-detail-image-button [imageId]="image"></app-delete-detail-image-button>
+          </div>
+        }
       </div>
     }
   </div>
@@ -135,7 +139,7 @@
       class="relative max-w-[80vw] mb-24 flex items-center justify-center"
     >
       <img
-        [src]="data.imageIds[selectedModalImageIndex]"
+        [src]="`/api/images/${data.imageIds[selectedModalImageIndex]}`"
         alt=""
         class="max-w-full max-h-[calc(80vh-6rem)] object-contain rounded-xl shadow-lg"
       />

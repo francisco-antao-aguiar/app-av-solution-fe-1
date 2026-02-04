@@ -14,22 +14,53 @@
     <h2 class="text-xl font-semibold mb-4">Add New Project</h2>
 
     <form [formGroup]="form" class="space-y-3">
-        @for(formcontrolName of form.controls | keyvalue; track formcontrolName.key) {
+      @for (formcontrolName of form.controls | keyvalue; track formcontrolName.key) {
+        @if (formcontrolName.key != "image") {
           <div class="relative">
             <input
               class="peer w-full border rounded-lg px-3 pt-5 pb-2 text-sm"
               [formControlName]="formcontrolName.key"
               type="text"
               [ngClass]="{
-        'border-red-500': form.get(formcontrolName.key)?.invalid 
-                          && (form.get(formcontrolName.key)?.touched 
+        'border-red-500': form.get(formcontrolName.key)?.invalid
+                          && (form.get(formcontrolName.key)?.touched
                           || form.get(formcontrolName.key)?.dirty),
         'border-gray-300': form.get(formcontrolName.key)?.valid
       }"/>
-              <label class="floating-label">{{formcontrolName.key}}</label>
+            <label class="floating-label">{{ formcontrolName.key }}</label>
           </div>
-          
         }
+
+      }
+
+      @if (withImage) {
+        <!-- Image upload -->
+        <input
+          (change)="onFileSelect($event)"
+          accept="image/*"
+          class="w-full"
+          type="file"/>
+
+        <!-- Image previews -->
+        <div *ngIf="imagePreview" class="flex flex-wrap gap-3 mt-3">
+          <div class="relative w-20 h-20 border rounded overflow-hidden">
+
+            <img
+              [src]="imagePreview"
+              alt="Preview"
+              class="w-full h-full object-cover"/>
+
+            <button
+              (click)="removeImage()"
+              class="absolute top-1 right-1 bg-black/60 text-white rounded-full w-5 h-5 text-xs"
+              type="button">
+              ✕
+            </button>
+
+          </div>
+        </div>
+      }
+
       <!-- Submit -->
       <button
         (click)="submit()"

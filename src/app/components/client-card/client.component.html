@@ -30,15 +30,18 @@
                class="object-contain h-32 w-full"
                style="cursor: pointer;"/>
 
-          <div class="absolute top-1 right-1 pointer-events-auto">
-            <app-delete-client-button [clientId]="client.id!"></app-delete-client-button>
-          </div>
+          @if (authService.isLoggedIn()) {
+            <div class="absolute top-1 right-1 pointer-events-auto">
+              <app-delete-client-button [clientId]="client.id!"></app-delete-client-button>
+            </div>
+          }
         </div>
       }
-
-      <div class="flex justify-center items-center hover:shadow-2xl transition-shadow duration-300">
-        <app-create-client></app-create-client>
-      </div>
+      @if (authService.isLoggedIn()) {
+        <div class="flex justify-center items-center hover:shadow-2xl transition-shadow duration-300">
+          <app-create-client></app-create-client>
+        </div>
+      }
     </div>
   }
 </div>

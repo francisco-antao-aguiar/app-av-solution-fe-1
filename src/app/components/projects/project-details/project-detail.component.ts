@@ -1,10 +1,11 @@
-import {Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {Component, ElementRef, inject, Input, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ProjectsCardModel} from '../../../pages/projects/projects.model';
 import {
   DeleteProjectDetailButton
 } from './utils/app-delete-project-detail-button/app-delete-project-detail-image-button.component';
 import {CreateProjectCard} from './utils/app-update-project-detail-button/app-update-project-detail.component';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
   selector: 'projects-detail-component',
@@ -14,6 +15,7 @@ import {CreateProjectCard} from './utils/app-update-project-detail-button/app-up
 })
 export class ProjectsPageComponent {
   @Input() data!: ProjectsCardModel;
+  protected authService = inject(AuthService);
   currentImageIndex = 0;
   isModalOpen = false;
   selectedModalImageIndex = 0;

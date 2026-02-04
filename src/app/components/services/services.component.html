@@ -2,7 +2,8 @@
   @if(authService.isLoggedIn()) {
     <section class="relative py-4 services pt-10" id="services" >
         <div class="absolute top-0 right-0 size-16 pointer-events-auto">
-          <app-update-project-button (labelsUpdatedEvent)="updateLabels($event)" [input]="data" [pageId]="pageId"></app-update-project-button>
+          <app-update-labels-button (labelsUpdatedEvent)="updateLabels($event)" [input]="data"
+                                    [pageId]="pageId"></app-update-labels-button>
         </div>
     </section>
   }

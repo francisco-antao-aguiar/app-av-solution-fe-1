@@ -1,12 +1,12 @@
 import {Component, inject, Input, SimpleChanges} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ServicesCardModel, ServicesModel} from '../../pages/home/home.model';
-import { AuthService } from '../../services/auth.service';
-import { UpdateProjectButton } from "../update-button/update-button.component";
+import {ServicesCardModel} from '../../pages/home/home.model';
+import {AuthService} from '../../services/auth.service';
+import {UpdateLabelsButton} from "../update-button/update-button.component";
 
 @Component({
   selector: 'services-component',
-  imports: [CommonModule, UpdateProjectButton],
+  imports: [CommonModule, UpdateLabelsButton],
   templateUrl: './services.component.html',
   styleUrl: './services.component.css',
 })
@@ -21,7 +21,7 @@ export class ServicesComponent {
         cards: this.buildCards(event),
       };
       this.data.cards.ignore = true
-  } 
+  }
    ngOnChanges(changes: SimpleChanges): void {
     if (changes['data'] && this.data) {
       this.data = {
@@ -31,7 +31,7 @@ export class ServicesComponent {
       this.data.cards.ignore = true
     }
   }
-  
+
   private buildCards(data: any): ServicesCardModel[] {
     return [
       {

@@ -16,14 +16,14 @@
         <a [routerLink]="['/projects', project.id]" class="block group">
           <project-card-component [data]="project" class="block"></project-card-component>
         </a>
-        @if (authService.isLoggedIn() || true) {
+        @if (authService.isLoggedIn()) {
           <div class="absolute top-1 right-1 pointer-events-auto">
             <app-delete-button [projectId]="project.id"></app-delete-button>
           </div>
         }
       </div>
     }
-    @if (authService.isLoggedIn() || true) {
+    @if (authService.isLoggedIn()) {
       <div class="block group relative">
         <app-create-project class="block"></app-create-project>
       </div>

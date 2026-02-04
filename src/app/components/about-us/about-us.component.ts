@@ -1,12 +1,12 @@
 import {Component, inject, Input, SimpleChanges} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {AboutUsCharacteristicModel, AboutUsModel} from '../../pages/home/home.model';
-import { AuthService } from '../../services/auth.service';
-import { UpdateProjectButton } from "../update-button/update-button.component";
+import {AboutUsCharacteristicModel} from '../../pages/home/home.model';
+import {AuthService} from '../../services/auth.service';
+import {UpdateLabelsButton} from "../update-button/update-button.component";
 
 @Component({
   selector: 'about-us-component',
-  imports: [CommonModule, UpdateProjectButton],
+  imports: [CommonModule, UpdateLabelsButton],
   templateUrl: './about-us.component.html',
   styleUrl: './about-us.component.css',
 })
@@ -21,7 +21,7 @@ export class AboutUsComponent {
       characteristics: this.buildCards(event),
     };
     this.data.characteristics.ignore = true
-  } 
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['data'] && this.data) {

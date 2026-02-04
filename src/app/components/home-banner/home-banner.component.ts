@@ -1,13 +1,12 @@
 import {Component, inject, Input} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterLink} from '@angular/router';
-import {HomeBannerModel} from '../../pages/home/home.model';
-import { AuthService } from '../../services/auth.service';
-import { UpdateProjectButton } from "../update-button/update-button.component";
+import {AuthService} from '../../services/auth.service';
+import {UpdateLabelsButton} from "../update-button/update-button.component";
 
 @Component({
   selector: 'home-banner-component',
-  imports: [CommonModule, RouterLink, UpdateProjectButton],
+  imports: [CommonModule, RouterLink, UpdateLabelsButton],
   templateUrl: './home-banner.component.html',
   styleUrl: './home-banner.component.css',
 })
@@ -18,7 +17,7 @@ export class HomeBannerComponent {
 
   updateLabels(event: any) {
     this.data = event;
-  } 
+  }
   ngOnInit() {
     console.log(this.data);
   }
